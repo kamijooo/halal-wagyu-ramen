@@ -353,11 +353,41 @@ video.hero__slide{
 }
 
 @media (max-width:1100px){
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero__copy{padding:80px 32px 50px}
-  .hero__photo{aspect-ratio:16/11;min-height:auto}
-  .steam{display:none}
-  .hero__photo-quote{font-size:18px;bottom:30px;left:24px;right:24px}
+  .hero{grid-template-columns:1fr;min-height:auto;display:flex;flex-direction:column}
+  .hero__copy{padding:80px 32px 50px;display:flex;flex-direction:column;order:1}
+  /* On mobile, hide the original photo container (DOM moved into mobile slot) */
+  .hero__photo{display:none}
+  /* Inside hero__copy: use order for re-stacking */
+  .hero__chip{order:1}
+  .hero__badges{order:2}
+  .hero__title{order:3}
+  .hero__subtitle-en{order:4}
+  .hero__subtitle-jp{order:5;margin-bottom:0}
+  .hero__mobile-photo-slot{
+    order:6;
+    display:block;
+    margin:24px -32px 28px;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    position:relative;
+    background:#000;
+  }
+  .hero__mobile-photo-slot .hero__slides{
+    position:absolute;inset:0;
+  }
+  .hero__mobile-photo-slot .steam{display:none}
+  .hero__mobile-photo-slot .hero__photo-tag{
+    position:absolute;top:14px;right:14px;left:auto;
+  }
+  .hero__mobile-photo-slot .hero__photo-tag .badge{font-size:9px;padding:6px 10px}
+  .hero__mobile-photo-slot .hero__photo-tag .meta{font-size:11px;padding:4px 10px}
+  .hero__lede{order:7}
+  .hero__catch-jp{order:8}
+  .hero__ctas{order:9}
+  .hero__urgency{order:10}
+}
+@media (min-width:1101px){
+  .hero__mobile-photo-slot{display:none}
 }
 @media (max-width:600px){
   .hero__copy{padding:80px 22px 40px}
@@ -392,58 +422,6 @@ video.hero__slide{
   width:1px;height:60px;background:linear-gradient(180deg,var(--torii) 0%,transparent 100%);
   z-index:2;
 }
-/* Calligraphy 麺 — huge background character using SVG (font-independent) */
-.kanji-bg{
-  position:absolute;
-  pointer-events:none;
-  user-select:none;
-  z-index:0;
-  display:block;
-}
-.kanji-bg svg{
-  width:100%;height:100%;
-  display:block;
-}
-.kanji-bg svg text{
-  font-family:'Shippori Mincho','Yu Mincho','Hiragino Mincho ProN','MS Mincho',serif;
-  font-weight:900;
-  fill:rgba(201,163,90,0.07);
-  stroke:rgba(201,163,90,0.22);
-  stroke-width:0.4;
-  letter-spacing:0;
-}
-.kanji-bg--bowl{
-  width:80vw;height:80vh;
-  top:50%;right:-15%;
-  transform:translateY(-50%) rotate(-3deg);
-  opacity:0.85;
-  filter:drop-shadow(0 0 20px rgba(201,163,90,0.05));
-}
-@media (max-width:1024px){
-  .kanji-bg--bowl{
-    width:100vw;right:-25%;
-    opacity:0.5;
-  }
-}
-@media (max-width:600px){
-  .kanji-bg--bowl{
-    width:110vw;right:-30%;
-    opacity:0.4;
-  }
-}
-@media (max-width:1024px){
-  .kanji-bg--bowl{
-    font-size:clamp(280px, 70vw, 500px);
-    right:-15%;opacity:0.4;
-  }
-}
-@media (max-width:600px){
-  .kanji-bg--bowl{
-    font-size:60vw;right:-20%;
-    opacity:0.35;
-  }
-}
-.bowl__head, .bowl__hero{position:relative;z-index:1}
 .bowl__head{max-width:1280px;margin:0 auto 70px;text-align:center}
 .bowl__chapter{
   font-family:var(--sans);font-size:11px;letter-spacing:0.4em;
@@ -772,8 +750,8 @@ video.hero__slide{
     var(--ink-deep);
 }
 .torch__inner{
-  max-width:1280px;margin:0 auto 70px;
-  display:grid;grid-template-columns:1fr 1.05fr;gap:70px;align-items:center;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center;
 }
 .torch__chapter{
   font-family:var(--sans);font-size:11px;letter-spacing:0.4em;
@@ -842,12 +820,11 @@ video.hero__slide{
 
 /* Vertical video (9:16) */
 .torch__video-wrap{
-  max-width:1280px;margin:0 auto;
   display:flex;justify-content:center;
 }
 .torch__video-frame{
   position:relative;
-  width:100%;max-width:340px;
+  width:340px;max-width:100%;
   aspect-ratio:9/16;
   border-radius:16px;overflow:hidden;
   border:1px solid rgba(201,163,90,0.3);
@@ -874,12 +851,12 @@ video.hero__slide{
 }
 
 @media (max-width:1024px){
-  .torch__inner{grid-template-columns:1fr;gap:40px}
-  .torch__photo{max-width:520px;margin:0 auto;width:100%}
+  .torch__inner{grid-template-columns:1fr;gap:40px;justify-items:center}
+  .torch__video-wrap{width:100%}
 }
 @media (max-width:600px){
   .torch-section{padding:80px 22px 90px}
-  .torch__video-frame{max-width:280px}
+  .torch__video-frame{width:280px}
 }
 
 
@@ -1566,6 +1543,9 @@ video.hero__slide{
     </p>
     <p class="hero__subtitle-jp">旅行者が、ラーメンのために京都まで来る店。</p>
 
+    <!-- Mobile-only photo slot (populated by JS from .hero__photo) -->
+    <div class="hero__mobile-photo-slot" aria-hidden="true"></div>
+
     <p class="hero__lede">
       A <em>signature wagyu-bone broth</em>, slow-simmered to draw out the umami
       — finished with <em>flame-torched wagyu</em> laid over the top.
@@ -1589,7 +1569,10 @@ video.hero__slide{
     </div>
 
     <div class="hero__urgency">
-      <span>Reservations recommended · <em>book ahead to secure your seat</em></span>
+      <span>
+        Reservations <em>highly recommended</em>, especially at peak hours
+        — we're often fully booked.
+      </span>
     </div>
   </div>
 
@@ -1616,26 +1599,14 @@ video.hero__slide{
       <span class="badge">Signature</span>
       <span class="meta">100% Japanese Wagyu</span>
     </div>
-
-    <blockquote class="hero__photo-quote">
-      The slice of wagyu half-cooks in the broth as you watch.
-      Photos don't do it justice.
-      <span class="src">— TripAdvisor · ★★★★★</span>
-    </blockquote>
   </div>
 </section>
 
 <!-- ============ THE BOWL ============ -->
 <section class="bowl-section">
-  <div class="kanji-bg kanji-bg--bowl" aria-hidden="true">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-      <text x="50" y="78" text-anchor="middle" font-size="92">麺</text>
-    </svg>
-  </div>
   <div class="bowl__head">
     <div class="bowl__chapter">The Bowl · 一杯</div>
     <h2 class="bowl__title">A bowl <em>worth flying for.</em></h2>
-    <p class="bowl__lede">オーセンティック和牛で、日本でしか出せない一杯を。</p>
     <p class="bowl__intro">
       Travelers come to Kyoto for many things. <em>This bowl</em> is one of them.
       <em>100% Japanese wagyu</em> sliced and laid over a rich broth — a halal
@@ -1669,7 +1640,7 @@ video.hero__slide{
       </p>
 
       <a href="#reserve" class="bowl__cta">
-        Reserve your bowl <span>→</span>
+        Book your seat <span>→</span>
       </a>
     </div>
   </div>
@@ -1712,7 +1683,7 @@ video.hero__slide{
         </div>
       </div>
 
-      <div class="flavor-row featured">
+      <div class="flavor-row">
         <div class="flavor-row__num">03</div>
         <div class="flavor-row__body">
           <div class="flavor-row__name">Wagyu <em>Spicy</em></div>
@@ -1765,29 +1736,24 @@ video.hero__slide{
         Watch it happen — Reserve <span>→</span>
       </a>
     </div>
-    <div class="torch__photo">
-      <img src="ramen-image/9.jpg" alt="Flame-torched marbled wagyu performance at the table">
-      <div class="torch__photo-label">
-        <span>Live performance</span>
+
+    <!-- Vertical video (9:16) -->
+    <div class="torch__video-wrap">
+      <div class="torch__video-frame">
+        <video
+          class="torch__video"
+          src="ramen-image/ramen.mp4"
+          autoplay muted loop playsinline preload="metadata"
+          poster="ramen-image/9.jpg"
+          aria-label="Wagyu performance at our counter">
+        </video>
+        <div class="torch__video-label">
+          <span class="torch__video-tag">Live from the counter</span>
+          <p>The flame, the wagyu, the moment.</p>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Video: same vertical clip from hero, anchoring the moment -->
-  <div class="torch__video-wrap">
-    <div class="torch__video-frame">
-      <video
-        class="torch__video"
-        src="ramen-image/ramen.mp4"
-        autoplay muted loop playsinline preload="metadata"
-        poster="ramen-image/9.jpg"
-        aria-label="Wagyu performance at our counter">
-      </video>
-      <div class="torch__video-label">
-        <span class="torch__video-tag">Live from the counter</span>
-        <p>The flame, the wagyu, the moment.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2067,6 +2033,36 @@ video.hero__slide{
 </div>
 
 <script>
+  // On mobile (<=1100px), move the hero photo into the inline mobile slot
+  // (between subtitle-jp and hero__lede)
+  (function(){
+    function moveHeroPhoto(){
+      var isMobile = window.matchMedia('(max-width: 1100px)').matches;
+      var slot = document.querySelector('.hero__mobile-photo-slot');
+      var photo = document.querySelector('.hero__photo');
+      if (!slot || !photo) return;
+      if (isMobile) {
+        // Move children of .hero__photo into the inline slot
+        if (!slot.dataset.populated) {
+          while (photo.firstChild) {
+            slot.appendChild(photo.firstChild);
+          }
+          slot.dataset.populated = '1';
+        }
+      } else {
+        // Restore: move children back to .hero__photo
+        if (slot.dataset.populated) {
+          while (slot.firstChild) {
+            photo.appendChild(slot.firstChild);
+          }
+          slot.dataset.populated = '';
+        }
+      }
+    }
+    moveHeroPhoto();
+    window.addEventListener('resize', moveHeroPhoto);
+  })();
+
   // Hero slideshow — video plays once, then 4 images fade in sequence, then loop
   (function(){
     var slides = document.querySelectorAll('.hero__slide');
