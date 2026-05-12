@@ -233,7 +233,14 @@ body::before{
 }
 .hero__slide.is-active{
   opacity:1;
+}
+/* Ken Burns zoom only for images */
+img.hero__slide.is-active{
   animation:slowZoom 8s ease-out forwards;
+}
+/* Video doesn't need transform animation (would conflict with playback) */
+video.hero__slide{
+  background:#000;
 }
 @keyframes slowZoom{
   from{transform:scale(1.0)}
@@ -1245,7 +1252,15 @@ body::before{
 
   <div class="hero__photo">
     <div class="hero__slides">
-      <img class="hero__slide is-active" src="ramen-image/6.jpg" alt="Wagyu ramen — spicy broth with marbled wagyu">
+      <video class="hero__slide hero__slide--video is-active"
+             id="heroVideo"
+             muted playsinline preload="auto"
+             poster="ramen-image/6.jpg">
+        <source src="ramen-image/ramen.MOV" type="video/quicktime">
+        <source src="ramen-image/ramen.MOV" type="video/mp4">
+        <source src="ramen-image/ramen.mp4" type="video/mp4">
+      </video>
+      <img class="hero__slide" src="ramen-image/6.jpg" alt="Wagyu ramen — spicy broth with marbled wagyu">
       <img class="hero__slide" src="ramen-image/9.jpg" alt="Wagyu ramen — flame-torched wagyu">
       <img class="hero__slide" src="ramen-image/8.jpg" alt="Wagyu ramen — noodle lift, spicy broth">
       <img class="hero__slide" src="ramen-image/7.jpg" alt="Wagyu ramen — premium wagyu set">
@@ -1743,16 +1758,77 @@ body::before{
 </div>
 
 <script>
-  // Hero slideshow — fade between images every ~4 seconds
+  // Hero slideshow — video plays once, then 4 images fade in sequence, then loop
   (function(){
     var slides = document.querySelectorAll('.hero__slide');
+    var video = document.getElementById('heroVideo');
     if (slides.length < 2) return;
+
     var current = 0;
-    setInterval(function(){
-      slides[current].classList.remove('is-active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('is-active');
-    }, 4500);
+    var imageDuration = 4500; // ms per image
+    var imageTimer = null;
+
+    function setActive(i){
+      slides.forEach(function(s, idx){
+        s.classList.toggle('is-active', idx === i);
+      });
+      current = i;
+    }
+
+    function showImage(i){
+      clearTimeout(imageTimer);
+      setActive(i);
+      imageTimer = setTimeout(function(){
+        var next = i + 1;
+        if (next >= slides.length){
+          // Loop back to video
+          playVideo();
+        } else {
+          showImage(next);
+        }
+      }, imageDuration);
+    }
+
+    function playVideo(){
+      clearTimeout(imageTimer);
+      setActive(0);
+      if (video){
+        try {
+          video.currentTime = 0;
+          var p = video.play();
+          if (p && p.catch) p.catch(function(){
+            // Autoplay blocked — skip to images after a beat
+            setTimeout(function(){ showImage(1); }, 2000);
+          });
+        } catch(e){
+          setTimeout(function(){ showImage(1); }, 2000);
+        }
+      } else {
+        showImage(1);
+      }
+    }
+
+    if (video){
+      video.addEventListener('ended', function(){
+        showImage(1);
+      });
+      // Fallback: if video fails to load, skip to images
+      video.addEventListener('error', function(){
+        showImage(1);
+      });
+      // Ensure video plays on first load
+      video.muted = true;
+      var initPlay = video.play();
+      if (initPlay && initPlay.catch){
+        initPlay.catch(function(){
+          // Autoplay was blocked — wait for user interaction or just start images
+          setTimeout(function(){ showImage(1); }, 2000);
+        });
+      }
+    } else {
+      // No video — just rotate images
+      showImage(1);
+    }
   })();
 
   // Sticky live activity
