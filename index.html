@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wagyu Beef Ramen (Halal) · Kyoto Station Restaurant · 京都 和牛 拉面 餐厅</title>
+<meta name="description" content="100% Japanese Wagyu Ramen, Muslim-friendly. Just steps from Kyoto Station. Miso, soy, spicy broth. Reservations welcome.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =================================================================
+   ROOT TOKENS
+================================================================= */
+:root{
+  --ink-deep:#0a0807;
+  --ink:#241b14;
+  --ink-2:#2e2319;
+  --ink-3:#1a1410;
+  --ink-warm:#1a1410;
+  --ink-card:#1f1814;
+
+  --paper:#f3ece1;
+  --paper-dim:#bfb39e;
+  --paper-mute:#8d8674;
+  --paper-faint:rgba(243,236,225,0.55);
+
+  --torii:#b91c1c;
+  --torii-deep:#7d1414;
+  --torii-bright:#dc2626;
+
+  --gold:#c9a35a;
+  --gold-bright:#d4a437;
+  --gold-pale:#e6c98a;
+  --gold-dim:#7a5e29;
+
+  --green-halal:#2d6a3f;
+
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --jp:'Shippori Mincho',serif;
+  --ar:'Amiri',serif;
+  --sans:'Inter',sans-serif;
+  --hand:'Caveat',cursive;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  background:var(--ink-deep);color:var(--paper);
+  font-family:var(--serif);overflow-x:hidden;
+  font-weight:400;line-height:1.55;
+}
+body{padding-bottom:64px}
+
+/* film grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity:0.14;mix-blend-mode:overlay;
+}
+
+/* =================================================================
+   MINIMAL NAV
+================================================================= */
+.lp-nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:linear-gradient(180deg, rgba(10,8,7,0.92) 0%, rgba(10,8,7,0.6) 80%, transparent 100%);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.lp-nav__logo{
+  font-family:var(--jp);font-weight:700;font-size:22px;
+  color:var(--gold);letter-spacing:0.04em;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.lp-nav__logo small{
+  font-family:var(--serif);font-style:italic;font-size:13px;
+  color:var(--paper-dim);font-weight:400;letter-spacing:0;
+}
+.lp-nav__cta{
+  padding:10px 22px;
+  background:var(--torii);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.28em;
+  text-transform:uppercase;font-weight:600;
+  border:1px solid var(--torii);
+  transition:background 0.3s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.lp-nav__cta:hover{background:var(--torii-deep)}
+@media (max-width:600px){
+  .lp-nav{padding:12px 16px}
+  .lp-nav__logo{font-size:18px}
+  .lp-nav__logo small{display:none}
+  .lp-nav__cta{padding:8px 14px;font-size:10px;letter-spacing:0.22em}
+}
+
+/* =================================================================
+   HERO
+================================================================= */
+.hero{
+  position:relative;min-height:100vh;
+  display:grid;grid-template-columns:1fr 1.05fr;gap:0;
+  background:var(--ink-deep);
+  overflow:hidden;
+  padding-top:60px;
+}
+.hero__copy{
+  padding:80px 50px 80px 70px;
+  position:relative;z-index:3;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero__chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 16px;background:var(--torii);color:var(--paper);
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;align-self:flex-start;
+  margin-bottom:28px;
+}
+.hero__chip .star{font-size:12px;line-height:1}
+
+.hero__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(56px,7vw,108px);line-height:0.95;letter-spacing:-0.03em;
+  color:var(--paper);margin-bottom:18px;
+}
+.hero__title em{font-style:italic;color:var(--gold);font-weight:400}
+
+.hero__subtitle-en{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:22px;line-height:1.4;color:var(--gold);
+  margin-bottom:6px;letter-spacing:0.01em;max-width:540px;
+}
+.hero__subtitle-jp{
+  font-family:var(--jp);font-weight:400;font-size:12px;
+  color:var(--paper-mute);letter-spacing:0.18em;
+  margin-bottom:30px;
+}
+
+.hero__lede{
+  font-family:var(--serif);font-size:18px;line-height:1.7;
+  color:rgba(243,236,225,0.85);max-width:540px;margin-bottom:14px;
+}
+.hero__lede em{font-style:italic;color:var(--gold);font-weight:500}
+
+.hero__catch-jp{
+  font-family:var(--jp);font-weight:400;font-size:12px;
+  color:var(--paper-mute);letter-spacing:0.14em;line-height:1.7;
+  max-width:540px;margin-bottom:30px;
+  padding-left:12px;border-left:1px solid rgba(201,163,90,0.3);
+}
+
+.hero__badges{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;
+}
+.hero__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;
+  font-family:var(--sans);font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;font-weight:600;
+  background:rgba(201,163,90,0.06);
+  border:1px solid rgba(201,163,90,0.25);
+  color:var(--paper-dim);
+}
+.hero__badge .dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,0.7);
+}
+.hero__badge.urgent{
+  background:rgba(185,28,28,0.12);border-color:var(--torii);color:var(--paper);
+}
+.hero__badge .ar{
+  font-family:var(--ar);font-size:13px;letter-spacing:0;
+  text-transform:none;color:var(--gold);font-weight:400;
+}
+
+.hero__ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.btn-reserve{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 32px;
+  background:var(--torii);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:12px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;
+  border:1px solid var(--torii);
+  transition:background 0.3s, transform 0.2s;
+  cursor:pointer;
+}
+.btn-reserve:hover{background:var(--torii-deep);transform:translateY(-2px)}
+.btn-reserve .arrow{font-style:normal;font-family:serif;font-size:18px}
+.btn-tel{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:14px 24px;
+  background:transparent;text-decoration:none;
+  border:1px solid rgba(201,163,90,0.4);
+  font-family:var(--serif);font-style:italic;font-size:20px;color:var(--paper);
+  transition:border-color 0.3s, color 0.3s;
+}
+.btn-tel:hover{color:var(--gold);border-color:var(--gold)}
+.btn-tel .icon{font-size:20px;color:var(--gold)}
+.btn-tel small{
+  display:block;font-family:var(--sans);font-style:normal;font-size:9px;
+  letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;
+  margin-top:2px;
+}
+
+.hero__urgency{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  color:var(--paper-dim);
+}
+.hero__urgency em{color:var(--gold);font-style:italic;font-weight:500}
+.hero__urgency::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--torii);
+  animation:pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+.hero__photo{
+  position:relative;min-height:100vh;overflow:hidden;
+  background:#000;
+}
+.hero__slides{
+  position:absolute;inset:0;
+}
+.hero__slide{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.08) brightness(0.92);
+  opacity:0;
+  transition:opacity 1.6s ease-in-out;
+}
+.hero__slide.is-active{
+  opacity:1;
+  animation:slowZoom 8s ease-out forwards;
+}
+@keyframes slowZoom{
+  from{transform:scale(1.0)}
+  to{transform:scale(1.06)}
+}
+.hero__photo::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(135deg, rgba(10,8,7,0.45) 0%, transparent 40%, rgba(10,8,7,0.55) 100%);
+}
+.hero__photo::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  box-shadow:inset 0 0 120px rgba(10,8,7,0.6);
+}
+.steam{
+  position:absolute;z-index:2;pointer-events:none;
+  width:140px;height:280px;
+  background:radial-gradient(ellipse at 50% 100%, rgba(243,236,225,0.18) 0%, transparent 70%);
+  filter:blur(20px);
+  animation:steam 4s ease-in-out infinite;
+}
+.steam.s1{top:30%;left:30%;animation-delay:0s}
+.steam.s2{top:25%;left:50%;animation-delay:1.2s}
+.steam.s3{top:32%;left:65%;animation-delay:2.4s}
+@keyframes steam{
+  0%,100%{opacity:0.4;transform:translateY(0) scale(1)}
+  50%{opacity:0.8;transform:translateY(-20px) scale(1.1)}
+}
+
+.hero__photo-tag{
+  position:absolute;top:32px;right:32px;z-index:3;
+  display:flex;flex-direction:column;align-items:flex-end;gap:6px;
+}
+.hero__photo-tag .badge{
+  background:var(--torii);color:var(--paper);
+  padding:8px 14px;font-family:var(--sans);font-size:10px;
+  font-weight:600;letter-spacing:0.28em;text-transform:uppercase;
+}
+.hero__photo-tag .meta{
+  font-family:var(--serif);font-style:italic;font-size:14px;color:var(--paper);
+  background:rgba(10,8,7,0.7);backdrop-filter:blur(4px);
+  padding:6px 12px;border:1px solid rgba(201,163,90,0.3);
+}
+
+.hero__photo-quote{
+  position:absolute;bottom:50px;left:40px;right:40px;z-index:3;
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(22px,2vw,32px);line-height:1.25;
+  color:var(--paper);
+  text-shadow:0 4px 20px rgba(0,0,0,0.6);
+  max-width:560px;
+}
+.hero__photo-quote::before{
+  content:"\201C";display:block;font-size:64px;color:var(--gold);
+  line-height:0.4;margin-bottom:14px;opacity:0.6;
+}
+.hero__photo-quote .src{
+  display:block;margin-top:18px;
+  font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:0.32em;
+  color:var(--paper-mute);text-transform:uppercase;font-weight:500;
+}
+
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero__copy{padding:80px 32px 50px}
+  .hero__photo{aspect-ratio:16/11;min-height:auto}
+  .steam{display:none}
+  .hero__photo-quote{font-size:18px;bottom:30px;left:24px;right:24px}
+}
+@media (max-width:600px){
+  .hero__copy{padding:80px 22px 40px}
+  .hero__chip{margin-bottom:20px}
+  .hero__title{font-size:48px}
+  .hero__subtitle-en{font-size:18px}
+  .hero__subtitle-jp{font-size:11px;letter-spacing:0.14em}
+  .hero__lede{font-size:16px}
+  .hero__catch-jp{font-size:11px;letter-spacing:0.1em;padding-left:10px}
+  .hero__ctas{flex-direction:column;align-items:stretch}
+  .btn-reserve, .btn-tel{justify-content:center;text-align:center}
+  .btn-tel{font-size:18px}
+  .hero__photo-tag{top:20px;right:20px}
+  .hero__photo-tag .badge{padding:6px 10px;font-size:9px}
+  .hero__photo-tag .meta{font-size:12px}
+  .hero__photo-quote::before{font-size:44px}
+}
+
+/* =================================================================
+   THE BOWL
+================================================================= */
+.bowl-section{
+  position:relative;padding:130px 60px 140px;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(185,28,28,0.08), transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(201,163,90,0.06), transparent 50%),
+    var(--ink-deep);
+}
+.bowl-section::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:60px;background:linear-gradient(180deg,var(--torii) 0%,transparent 100%);
+}
+.bowl__head{max-width:1280px;margin:0 auto 70px;text-align:center}
+.bowl__chapter{
+  font-family:var(--sans);font-size:11px;letter-spacing:0.4em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:14px;
+}
+.bowl__chapter::before,.bowl__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.bowl__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(48px,6vw,88px);line-height:1.02;letter-spacing:-0.02em;
+  color:var(--paper);margin-bottom:14px;
+}
+.bowl__title em{font-style:italic;color:var(--gold)}
+.bowl__lede{
+  font-family:var(--jp);font-size:15px;color:var(--paper-dim);letter-spacing:0.22em;
+  max-width:680px;margin:0 auto 20px;
+}
+.bowl__intro{
+  font-family:var(--serif);font-size:18px;line-height:1.7;
+  color:rgba(243,236,225,0.78);max-width:720px;margin:0 auto;
+}
+.bowl__intro em{font-style:italic;color:var(--gold);font-weight:500}
+.bowl__hero{
+  max-width:1280px;margin:0 auto 80px;
+  display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;
+}
+.bowl__photo{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.55);
+}
+.bowl__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.bowl__photo::after{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 80px rgba(10,8,7,0.5);
+}
+.bowl__photo .corner{
+  position:absolute;width:50px;height:50px;
+  border:1px solid var(--gold);pointer-events:none;
+}
+.bowl__photo .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}
+.bowl__photo .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.bowl__photo .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}
+.bowl__photo .corner.br{bottom:14px;right:14px;border-left:0;border-top:0}
+.bowl__photo .label{
+  position:absolute;top:30px;left:30px;z-index:3;
+  background:var(--torii);color:var(--paper);
+  padding:10px 18px;
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;
+}
+.bowl__details h3{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(34px,4vw,54px);line-height:1.05;letter-spacing:-0.02em;
+  color:var(--paper);margin-bottom:8px;
+}
+.bowl__details h3 em{font-style:italic;color:var(--gold)}
+.bowl__details .name-jp{
+  font-family:var(--jp);font-size:16px;color:var(--paper-dim);letter-spacing:0.22em;margin-bottom:28px;
+}
+.bowl__details p.desc{
+  font-family:var(--serif);font-size:17px;line-height:1.75;
+  color:rgba(243,236,225,0.85);margin-bottom:32px;
+}
+.bowl__details p.desc em{font-style:italic;color:var(--gold);font-weight:500}
+.ingredients{
+  list-style:none;padding:0;margin:0 0 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;
+  padding-top:24px;border-top:1px solid rgba(201,163,90,0.2);
+}
+.ingredients li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-family:var(--serif);font-size:15.5px;color:var(--paper-dim);line-height:1.4;
+}
+.ingredients li::before{
+  content:"";width:6px;height:6px;background:var(--gold);
+  border-radius:50%;margin-top:8px;flex-shrink:0;
+}
+.ingredients li em{font-style:italic;color:var(--paper);font-weight:500}
+.bowl__cta{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 32px;background:var(--torii);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;
+  border:1px solid var(--torii);
+  transition:background 0.3s, transform 0.2s;
+  cursor:pointer;
+}
+.bowl__cta:hover{background:var(--torii-deep);transform:translateY(-2px)}
+.why{
+  max-width:1280px;margin:0 auto;
+  padding-top:50px;border-top:1px solid rgba(201,163,90,0.18);
+}
+.why__head{text-align:center;margin-bottom:50px}
+.why__head h3{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(28px,3.4vw,42px);line-height:1.1;color:var(--paper);margin-bottom:10px;
+}
+.why__head h3 em{font-style:italic;color:var(--gold)}
+.why__head p{
+  font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:0.22em;
+}
+.why__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.why__card{
+  padding:34px 28px;
+  background:rgba(201,163,90,0.04);
+  border:1px solid rgba(201,163,90,0.18);
+  position:relative;
+  transition:border-color 0.3s, transform 0.3s;
+}
+.why__card:hover{border-color:rgba(201,163,90,0.4);transform:translateY(-4px)}
+.why__card .num{
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:48px;color:var(--gold);line-height:1;margin-bottom:14px;opacity:0.6;
+}
+.why__card h4{
+  font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2;
+  color:var(--paper);margin-bottom:8px;
+}
+.why__card h4 em{font-style:italic;color:var(--gold)}
+.why__card .jp{
+  font-family:var(--jp);font-size:12px;color:var(--paper-dim);letter-spacing:0.2em;margin-bottom:18px;
+}
+.why__card p{font-family:var(--serif);font-size:15px;line-height:1.65;color:var(--paper-dim)}
+.why__card p em{font-style:italic;color:var(--gold);font-weight:500}
+@media (max-width:1024px){
+  .bowl__hero{grid-template-columns:1fr;gap:40px}
+  .bowl__photo{aspect-ratio:4/3;max-width:600px;margin:0 auto;width:100%}
+  .why__grid{grid-template-columns:1fr;gap:18px}
+  .ingredients{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .bowl-section{padding:80px 22px 90px}
+  .bowl__hero{margin-bottom:60px}
+}
+
+/* =================================================================
+   FLAVORS
+================================================================= */
+.flavors-section{
+  position:relative;padding:130px 60px 140px;
+  background:linear-gradient(180deg, var(--ink-deep) 0%, #14100c 100%);
+}
+.flavors__head{max-width:1280px;margin:0 auto 70px;text-align:center}
+.flavors__chapter{
+  font-family:var(--sans);font-size:11px;letter-spacing:0.4em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:14px;
+}
+.flavors__chapter::before,.flavors__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.flavors__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(46px,5.4vw,78px);line-height:1.02;letter-spacing:-0.02em;
+  color:var(--paper);margin-bottom:14px;
+}
+.flavors__title em{font-style:italic;color:var(--gold)}
+.flavors__lede{font-family:var(--jp);font-size:15px;color:var(--paper-dim);letter-spacing:0.22em}
+.flavors__grid{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.flavor{
+  position:relative;
+  background:rgba(31,24,20,0.6);
+  border:1px solid rgba(201,163,90,0.18);
+  overflow:hidden;
+  transition:border-color 0.3s, transform 0.3s;
+  display:flex;flex-direction:column;
+}
+.flavor:hover{border-color:rgba(201,163,90,0.45);transform:translateY(-6px)}
+.flavor__photo{position:relative;aspect-ratio:4/3;overflow:hidden}
+.flavor__photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.6s;
+}
+.flavor:hover .flavor__photo img{transform:scale(1.04)}
+.flavor__photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 50%, rgba(10,8,7,0.55) 100%);
+}
+.flavor__photo .accent{
+  position:absolute;top:18px;left:18px;z-index:2;
+  padding:6px 12px;
+  font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;
+  text-transform:uppercase;font-weight:600;
+  color:var(--paper);
+  background:rgba(10,8,7,0.7);backdrop-filter:blur(4px);
+  border:1px solid rgba(201,163,90,0.4);
+}
+.flavor__photo .accent.miso{background:rgba(184,134,52,0.85);border-color:#b88634}
+.flavor__photo .accent.soy{background:rgba(58,40,26,0.85);border-color:#7a5e29}
+.flavor__photo .accent.spicy{background:rgba(185,28,28,0.9);border-color:var(--torii)}
+.flavor__body{padding:32px 28px 30px;flex:1;display:flex;flex-direction:column}
+.flavor__num{
+  font-family:var(--serif);font-style:italic;font-size:14px;color:var(--gold);
+  margin-bottom:8px;letter-spacing:0.04em;
+}
+.flavor__name{
+  font-family:var(--serif);font-weight:400;
+  font-size:32px;line-height:1.1;letter-spacing:-0.01em;
+  color:var(--paper);margin-bottom:4px;
+}
+.flavor__name em{font-style:italic;color:var(--gold)}
+.flavor__jp{
+  font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:0.2em;
+  margin-bottom:20px;
+}
+.flavor__desc{
+  font-family:var(--serif);font-size:15.5px;line-height:1.65;color:var(--paper-dim);
+  flex:1;margin-bottom:22px;
+}
+.flavor__desc em{font-style:italic;color:var(--paper);font-weight:500}
+.flavor__meta{
+  padding-top:20px;border-top:1px solid rgba(201,163,90,0.18);
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.flavor__meta .k{
+  font-family:var(--sans);font-size:9px;letter-spacing:0.28em;
+  color:var(--paper-mute);text-transform:uppercase;font-weight:500;margin-bottom:3px;
+}
+.flavor__meta .v{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--paper)}
+.grades{
+  max-width:1280px;margin:60px auto 0;
+  padding:36px 40px;
+  background:linear-gradient(135deg, rgba(201,163,90,0.06), rgba(185,28,28,0.04));
+  border:1px solid rgba(201,163,90,0.22);
+  display:grid;grid-template-columns:auto 1fr 1fr;gap:30px;align-items:center;
+}
+.grades__head{
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:26px;color:var(--paper);line-height:1.2;
+  border-right:1px solid rgba(201,163,90,0.25);
+  padding-right:30px;
+}
+.grades__head small{
+  display:block;font-family:var(--jp);font-style:normal;font-size:12px;
+  color:var(--paper-mute);letter-spacing:0.22em;margin-top:6px;
+}
+.grade{display:flex;flex-direction:column;gap:5px}
+.grade__title{
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  color:var(--gold);text-transform:uppercase;font-weight:600;
+}
+.grade__name{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper)}
+.grade__desc{font-family:var(--serif);font-size:13.5px;line-height:1.5;color:var(--paper-dim)}
+@media (max-width:1024px){
+  .flavors__grid{grid-template-columns:1fr;gap:18px}
+  .grades{grid-template-columns:1fr;gap:20px;padding:28px 24px}
+  .grades__head{border-right:0;border-bottom:1px solid rgba(201,163,90,0.25);padding-right:0;padding-bottom:16px}
+}
+@media (max-width:600px){.flavors-section{padding:80px 22px 90px}}
+
+/* =================================================================
+   STORY
+================================================================= */
+.story-section{
+  position:relative;padding:130px 60px 140px;
+  background:radial-gradient(ellipse at 20% 0%, rgba(185,28,28,0.07), transparent 55%),var(--ink-deep);
+}
+.story-section::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:60px;background:linear-gradient(180deg,var(--gold) 0%,transparent 100%);
+}
+.story__inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;
+}
+.story__photo{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  box-shadow:0 30px 60px rgba(0,0,0,0.5);
+}
+.story__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.story__photo::after{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 80px rgba(10,8,7,0.5);
+}
+.story__photo .tag{
+  position:absolute;top:24px;left:24px;z-index:2;
+  font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;
+  color:var(--paper);text-transform:uppercase;font-weight:600;
+  background:rgba(10,8,7,0.75);backdrop-filter:blur(6px);
+  border:1px solid rgba(201,163,90,0.4);
+  padding:7px 14px;
+}
+.story__chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 16px;background:var(--torii);color:var(--paper);
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;margin-bottom:22px;
+}
+.story__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-0.02em;
+  color:var(--paper);margin-bottom:14px;
+}
+.story__title em{font-style:italic;color:var(--gold)}
+.story__jp{
+  font-family:var(--jp);font-size:15px;color:var(--paper-dim);letter-spacing:0.22em;
+  border-left:2px solid var(--torii);padding-left:14px;margin-bottom:28px;
+}
+.story__body p{
+  font-family:var(--serif);font-size:16.5px;line-height:1.75;color:rgba(243,236,225,0.78);
+  margin-bottom:22px;
+}
+.story__body p em{font-style:italic;color:var(--gold);font-weight:500}
+.story__quote{
+  margin-top:28px;padding:24px 0 0;
+  border-top:1px solid rgba(201,163,90,0.22);
+  font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold);line-height:1.35;
+}
+.story__quote small{
+  display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:0.32em;
+  color:var(--paper-mute);text-transform:uppercase;margin-top:12px;
+}
+@media (max-width:1024px){
+  .story__inner{grid-template-columns:1fr;gap:50px}
+  .story__photo{max-width:520px;margin:0 auto;width:100%}
+}
+@media (max-width:600px){.story-section{padding:80px 22px 90px}}
+
+/* =================================================================
+   TRUST (Muslim-friendly)
+================================================================= */
+.trust-section{
+  position:relative;padding:130px 60px 140px;
+  background:radial-gradient(ellipse at 80% 0%, rgba(201,163,90,0.06), transparent 55%),var(--ink-deep);
+}
+.trust__inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;
+}
+.trust__copy .chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 16px;background:var(--torii);color:var(--paper);
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;margin-bottom:22px;
+}
+.trust__copy h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(38px,4.6vw,60px);line-height:1.04;letter-spacing:-0.02em;
+  color:var(--paper);margin-bottom:14px;
+}
+.trust__copy h2 em{font-style:italic;color:var(--gold)}
+.trust__copy .jp{
+  font-family:var(--jp);font-size:15px;color:var(--paper-dim);letter-spacing:0.22em;
+  border-left:2px solid var(--torii);padding-left:14px;margin-bottom:28px;
+}
+.trust__copy ul{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:14px;
+}
+.trust__copy ul li{
+  display:grid;grid-template-columns:auto 1fr;gap:16px;
+  padding:14px 0;border-bottom:1px solid rgba(201,163,90,0.15);
+  font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--paper-dim);
+}
+.trust__copy ul li:last-child{border-bottom:0}
+.trust__copy ul li::before{
+  content:"\2713";width:26px;height:26px;border-radius:50%;background:var(--torii);
+  color:var(--paper);font-family:var(--sans);font-size:11px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;line-height:1;
+  flex-shrink:0;margin-top:1px;
+}
+.trust__copy ul li em{font-style:italic;color:var(--gold);font-weight:500}
+.trust__panel{
+  position:relative;aspect-ratio:4/5;
+  background:
+    radial-gradient(ellipse at 30% 25%, rgba(201,163,90,0.10), transparent 60%),
+    radial-gradient(ellipse at 75% 75%, rgba(185,28,28,0.07), transparent 65%),
+    linear-gradient(135deg, var(--ink), var(--ink-deep));
+  border:1px solid rgba(201,163,90,0.25);
+  padding:50px 40px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 30px 60px rgba(0,0,0,0.4);
+}
+.trust__panel .top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  color:var(--gold);text-transform:uppercase;font-weight:500;
+}
+.trust__panel .ar{
+  font-family:var(--ar);font-size:15px;color:var(--paper-dim);
+  direction:rtl;letter-spacing:0;text-transform:none;
+}
+.trust__panel .seal{align-self:center;text-align:center;margin:auto 0}
+.trust__panel .ring{
+  width:180px;height:180px;border-radius:50%;border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;margin:0 auto 22px;
+  background:radial-gradient(circle at 50% 50%, rgba(201,163,90,0.08), transparent 70%);
+}
+.trust__panel .ring::before,.trust__panel .ring::after{
+  content:"";position:absolute;inset:8px;border-radius:50%;
+  border:1px solid rgba(201,163,90,0.4);
+}
+.trust__panel .ring::after{inset:14px;border-style:dashed;opacity:0.5}
+.trust__panel .ring .ar-big{
+  font-family:var(--ar);font-size:64px;color:var(--gold);
+  font-weight:700;line-height:1;direction:rtl;
+}
+.trust__panel .label-en{
+  font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);margin-bottom:4px;
+}
+.trust__panel .label-en em{font-style:italic;color:var(--gold)}
+.trust__panel .label-jp{
+  font-family:var(--jp);font-size:12px;color:var(--paper-dim);letter-spacing:0.22em;
+}
+.trust__panel .bottom{
+  display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  padding-top:22px;border-top:1px solid rgba(201,163,90,0.22);
+}
+.trust__panel .bottom .k{
+  display:block;font-family:var(--sans);font-size:9px;letter-spacing:0.28em;
+  color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:3px;
+}
+.trust__panel .bottom .v{
+  font-family:var(--serif);font-style:italic;color:var(--paper);font-size:13px;
+}
+@media (max-width:1024px){
+  .trust__inner{grid-template-columns:1fr;gap:50px}
+  .trust__panel{max-width:520px;margin:0 auto;width:100%}
+}
+@media (max-width:600px){
+  .trust-section{padding:80px 22px 90px}
+  .trust__panel{padding:36px 24px}
+  .trust__panel .ring{width:140px;height:140px}
+  .trust__panel .ring .ar-big{font-size:48px}
+}
+
+/* =================================================================
+   REVIEWS
+================================================================= */
+.reviews-section{
+  position:relative;padding:120px 60px 130px;
+  background:radial-gradient(ellipse at 20% 0%, rgba(201,163,90,0.06), transparent 55%),var(--ink-deep);
+}
+.reviews__head{
+  max-width:1280px;margin:0 auto 60px;
+  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;
+  padding-bottom:28px;border-bottom:1px solid rgba(201,163,90,0.2);
+}
+.reviews__chapter{
+  font-family:var(--sans);font-size:10.5px;letter-spacing:0.32em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:18px;
+  display:flex;align-items:center;gap:14px;
+}
+.reviews__chapter::before{content:"";width:36px;height:1px;background:var(--gold)}
+.reviews__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(40px,4.6vw,60px);line-height:1.05;letter-spacing:-0.02em;
+  color:var(--paper);
+}
+.reviews__title em{font-style:italic;color:var(--gold)}
+.reviews__title-jp{
+  font-family:var(--jp);font-size:15px;color:var(--paper-dim);letter-spacing:0.22em;margin-top:12px;
+}
+.reviews__rating{text-align:right;font-family:var(--sans);font-size:10.5px;letter-spacing:0.22em;color:var(--paper-mute);text-transform:uppercase;line-height:1.6}
+.reviews__rating .stars{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:38px;letter-spacing:0.05em;line-height:1;margin-bottom:4px}
+.reviews__rating .score{font-family:var(--serif);font-style:italic;color:var(--paper);font-size:22px;letter-spacing:0;text-transform:none}
+.reviews__rating .score em{color:var(--gold);font-style:italic}
+.review-grid{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+}
+.review-card{
+  background:var(--ink-card);
+  border:1px solid rgba(201,163,90,0.18);
+  padding:30px 28px;
+  display:flex;flex-direction:column;gap:18px;
+  transition:border-color 0.3s, transform 0.3s;
+  position:relative;
+}
+.review-card:hover{border-color:rgba(201,163,90,0.4);transform:translateY(-4px)}
+.review-card::before{
+  content:"\201C";position:absolute;top:-12px;left:24px;
+  font-family:var(--serif);font-style:italic;font-size:80px;color:var(--gold);
+  line-height:1;opacity:0.4;
+}
+.review-card .top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-top:18px;
+}
+.review-card .stars{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:18px;letter-spacing:0.04em}
+.review-card .source{
+  font-family:var(--sans);font-size:9px;letter-spacing:0.28em;color:var(--paper-mute);
+  text-transform:uppercase;font-weight:500;
+  padding:4px 10px;border:1px solid rgba(201,163,90,0.3);
+}
+.review-card .body{
+  font-family:var(--serif);font-size:15.5px;line-height:1.65;color:var(--paper-dim);flex:1;
+}
+.review-card .body em{font-style:italic;color:var(--gold);font-weight:500}
+.review-card .foot{
+  padding-top:16px;border-top:1px solid rgba(201,163,90,0.15);
+  display:flex;flex-direction:column;gap:4px;
+}
+.review-card .foot .name{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--paper)}
+.review-card .foot .meta{
+  font-family:var(--sans);font-size:10px;letter-spacing:0.22em;color:var(--paper-mute);
+  text-transform:uppercase;line-height:1.6;
+}
+.review-card .foot .meta .country{color:var(--gold);font-weight:500}
+.reviews__cta{
+  max-width:1280px;margin:60px auto 0;text-align:center;
+  padding-top:40px;border-top:1px solid rgba(201,163,90,0.18);
+}
+.reviews__cta-text{
+  font-family:var(--serif);font-style:italic;font-size:18px;color:var(--paper-dim);margin-bottom:24px;
+}
+.reviews__cta-text em{color:var(--gold)}
+.reviews__cta a, .reviews__cta button{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:16px 30px;background:var(--torii);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;
+  border:1px solid var(--torii);transition:background 0.3s;
+  cursor:pointer;
+}
+.reviews__cta a:hover, .reviews__cta button:hover{background:var(--torii-deep)}
+@media (max-width:1024px){.review-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:680px){
+  .reviews-section{padding:80px 22px 90px}
+  .reviews__head{grid-template-columns:1fr;text-align:left;gap:20px}
+  .reviews__rating{text-align:left}
+  .review-grid{grid-template-columns:1fr}
+}
+
+/* =================================================================
+   ACCESS
+================================================================= */
+.access-section{position:relative;padding:120px 60px;background:linear-gradient(180deg,#14100c,var(--ink-deep))}
+.access__head{max-width:1280px;margin:0 auto 50px;text-align:center}
+.access__chapter{
+  font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px;
+}
+.access__chapter::before,.access__chapter::after{content:"";width:32px;height:1px;background:var(--gold)}
+.access__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(42px,5vw,68px);line-height:1.04;color:var(--paper);margin-bottom:10px;
+}
+.access__title em{font-style:italic;color:var(--gold)}
+.access__jp{font-family:var(--jp);font-size:14px;color:var(--paper-dim);letter-spacing:.22em}
+.access__grid{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:50px;
+}
+.access__map{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:var(--ink-card);border:1px solid rgba(201,163,90,.2);
+}
+.access__map iframe{width:100%;height:100%;border:0;display:block}
+.access__map .label{
+  position:absolute;top:18px;left:18px;z-index:2;
+  background:var(--torii);color:var(--paper);padding:8px 14px;
+  font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;
+}
+.access__map .open-link{
+  position:absolute;bottom:18px;right:18px;z-index:2;padding:8px 16px;
+  background:rgba(10,8,7,.85);backdrop-filter:blur(4px);
+  border:1px solid rgba(201,163,90,.4);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;
+  transition:border-color .3s, color .3s;
+}
+.access__map .open-link:hover{color:var(--gold);border-color:var(--gold)}
+.access__info{
+  background:rgba(31,24,20,.5);border:1px solid rgba(201,163,90,.2);padding:36px 30px;
+}
+.access__info .k{
+  font-family:var(--sans);font-size:9.5px;letter-spacing:.32em;
+  color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px;
+}
+.access__info h3{
+  font-family:var(--serif);font-weight:400;font-size:24px;color:var(--paper);
+  margin-bottom:4px;line-height:1.2;
+}
+.access__info h3 em{font-style:italic;color:var(--gold)}
+.access__info .head-jp{
+  font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:.16em;margin-bottom:6px;
+}
+.access__info .head-cn{
+  display:block;
+  font-family:var(--jp);font-size:11.5px;color:var(--paper-mute);letter-spacing:.08em;margin-bottom:24px;
+}
+.access__info .rows{padding-top:18px;border-top:1px solid rgba(201,163,90,.2);display:flex;flex-direction:column}
+.access__info .row{
+  display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid rgba(201,163,90,.12);
+}
+.access__info .row:last-child{border-bottom:0}
+.access__info .rk{
+  font-family:var(--sans);font-size:9.5px;letter-spacing:.28em;
+  color:var(--paper-mute);text-transform:uppercase;font-weight:500;line-height:1.5;
+}
+.access__info .rv{font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--paper)}
+.access__info .rv em{font-style:italic;color:var(--gold);font-weight:500}
+.access__info .rv small{
+  display:block;font-family:var(--sans);font-style:normal;font-size:10px;
+  letter-spacing:.18em;color:var(--paper-mute);text-transform:uppercase;margin-top:4px;
+}
+@media (max-width:1024px){.access__grid{grid-template-columns:1fr;gap:30px}}
+@media (max-width:600px){.access-section{padding:70px 22px 90px}}
+
+/* =================================================================
+   RESERVE (final CTA)
+================================================================= */
+.reserve-section{
+  position:relative;padding:130px 60px 130px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(185,28,28,0.10), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(201,163,90,0.08), transparent 60%),
+    var(--ink-deep);
+}
+.reserve-section::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1px;height:60px;background:linear-gradient(180deg,var(--torii) 0%,transparent 100%);
+}
+.reserve__inner{max-width:1100px;margin:0 auto;text-align:center}
+.reserve__chapter{
+  font-family:var(--sans);font-size:11px;letter-spacing:0.4em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:24px;
+  display:inline-flex;align-items:center;gap:14px;
+}
+.reserve__chapter::before,.reserve__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.reserve__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(54px,7vw,108px);line-height:0.98;letter-spacing:-0.03em;
+  color:var(--paper);margin-bottom:20px;
+}
+.reserve__title em{font-style:italic;color:var(--gold)}
+.reserve__title .strike{
+  display:block;font-style:italic;color:var(--torii);font-size:0.58em;line-height:1.2;
+  margin-top:8px;font-weight:400;
+}
+.reserve__jp{
+  font-family:var(--jp);font-size:17px;color:var(--paper-dim);letter-spacing:0.22em;
+  margin-bottom:36px;
+}
+.reserve__lede{
+  font-family:var(--serif);font-size:19px;line-height:1.7;color:rgba(243,236,225,0.85);
+  max-width:680px;margin:0 auto 48px;
+}
+.reserve__lede em{font-style:italic;color:var(--gold);font-weight:500}
+.reserve__cta-group{
+  display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;
+}
+.reserve__cta-primary{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:24px 46px;
+  background:var(--torii);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:13px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;
+  border:1px solid var(--torii);
+  transition:background 0.3s, transform 0.2s;
+  cursor:pointer;
+}
+.reserve__cta-primary:hover{background:var(--torii-deep);transform:translateY(-3px)}
+.reserve__cta-primary .arrow{font-style:normal;font-family:serif;font-size:22px}
+.reserve__cta-secondary{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:20px 36px;
+  background:transparent;text-decoration:none;
+  border:1px solid rgba(201,163,90,0.4);
+  font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);
+  transition:color 0.3s, border-color 0.3s;
+}
+.reserve__cta-secondary:hover{color:var(--gold);border-color:var(--gold)}
+.reserve__cta-secondary .icon{font-size:22px;color:var(--gold)}
+.reserve__cta-secondary small{
+  display:block;font-family:var(--sans);font-style:normal;font-size:9.5px;
+  letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;margin-top:3px;
+}
+.reserve__alts{
+  display:flex;gap:24px;justify-content:center;flex-wrap:wrap;
+  padding:24px 0;border-top:1px solid rgba(201,163,90,0.18);border-bottom:1px solid rgba(201,163,90,0.18);
+  margin-bottom:36px;
+}
+.reserve__alts a{
+  font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--paper-dim);font-weight:500;
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.reserve__alts a:hover{color:var(--gold)}
+.reserve__alts a em{
+  font-family:var(--serif);font-style:italic;color:var(--gold);font-size:13px;
+  letter-spacing:0;text-transform:none;font-weight:500;margin:0 4px;
+}
+.reserve__status{
+  font-family:var(--serif);font-style:italic;font-size:16px;color:var(--paper-mute);
+}
+.reserve__status em{color:var(--gold);font-style:italic;font-weight:500}
+.reserve__status::before{
+  content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--torii);margin-right:8px;
+  animation:pulse 1.4s ease-in-out infinite;vertical-align:middle;
+}
+@media (max-width:600px){
+  .reserve-section{padding:80px 22px 90px}
+  .reserve__title{font-size:46px}
+  .reserve__jp{font-size:14px;letter-spacing:0.18em}
+  .reserve__lede{font-size:16px}
+  .reserve__cta-group{flex-direction:column;align-items:stretch}
+  .reserve__cta-primary, .reserve__cta-secondary{justify-content:center;text-align:center}
+  .reserve__cta-secondary{font-size:18px}
+  .reserve__alts{flex-direction:column;gap:12px;text-align:center}
+}
+
+/* =================================================================
+   STICKY LIVE ACTIVITY
+================================================================= */
+.sticky-live{
+  position:fixed;left:0;right:0;bottom:0;z-index:150;
+  background:rgba(10,8,7,0.92);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(201,163,90,0.3);
+  box-shadow:0 -10px 30px rgba(0,0,0,0.4);
+  animation:sticky-enter 0.6s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+}
+.sticky-live.hidden{transform:translateY(110%)}
+@keyframes sticky-enter{from{transform:translateY(110%)}to{transform:translateY(0)}}
+.sticky-live__inner{
+  max-width:1200px;margin:0 auto;
+  padding:12px 24px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.sticky-live__item{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--sans);font-size:12px;color:var(--paper-dim);
+  line-height:1.4;
+}
+.sticky-live__item em{
+  font-family:var(--serif);font-style:italic;color:var(--gold);
+  font-weight:500;font-size:15px;margin:0 1px;
+}
+.sticky-live__dot{
+  width:9px;height:9px;border-radius:50%;background:#4ade80;
+  box-shadow:0 0 10px rgba(74,222,128,0.7);
+  animation:sticky-pulse 1.6s ease-in-out infinite;
+}
+@keyframes sticky-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.85)}}
+.sticky-live__check{color:var(--gold);font-weight:700;font-size:13px;font-family:var(--sans)}
+.sticky-live__sep{width:1px;height:18px;background:rgba(201,163,90,0.3)}
+.sticky-live__cta{
+  margin-left:auto;padding:9px 18px;
+  background:var(--torii);color:var(--paper);text-decoration:none;
+  font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;
+  text-transform:uppercase;font-weight:600;border:1px solid var(--torii);
+  transition:background 0.3s;
+  display:inline-flex;align-items:center;gap:8px;
+  cursor:pointer;
+}
+.sticky-live__cta:hover{background:var(--torii-deep)}
+.sticky-live__close{
+  position:absolute;top:6px;right:6px;width:22px;height:22px;
+  background:transparent;border:0;color:var(--paper-mute);
+  font-size:18px;line-height:1;cursor:pointer;
+}
+.sticky-live__close:hover{color:var(--paper)}
+@media (max-width:640px){
+  body{padding-bottom:108px}
+  .sticky-live__inner{padding:10px 38px 10px 14px;gap:8px 14px}
+  .sticky-live__item{font-size:11px;flex-basis:100%}
+  .sticky-live__item em{font-size:13px}
+  .sticky-live__sep{display:none}
+  .sticky-live__cta{margin-left:0;flex:1;text-align:center;justify-content:center;padding:8px 12px;font-size:10px;letter-spacing:0.22em}
+}
+
+/* =================================================================
+   ENGAGEMENT DIALOG
+================================================================= */
+.engage-dialog{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;pointer-events:none;
+  transition:opacity 0.4s;
+}
+.engage-dialog[hidden]{display:none}
+.engage-dialog.show{opacity:1;pointer-events:auto}
+.engage-dialog__backdrop{
+  position:absolute;inset:0;
+  background:rgba(10,8,7,0.78);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.engage-dialog__panel{
+  position:relative;max-width:520px;width:100%;
+  background:linear-gradient(135deg,#1a120c 0%,#221710 100%);
+  border:1px solid rgba(201,163,90,0.32);
+  padding:42px 38px 32px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.6);
+  transform:translateY(20px) scale(0.98);
+  transition:transform 0.45s cubic-bezier(0.16,1,0.3,1);
+}
+.engage-dialog.show .engage-dialog__panel{transform:translateY(0) scale(1)}
+.engage-dialog__close{
+  position:absolute;top:14px;right:14px;
+  width:32px;height:32px;background:transparent;
+  border:1px solid rgba(201,163,90,0.3);
+  color:var(--paper-dim);font-size:14px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:color 0.3s, border-color 0.3s;
+}
+.engage-dialog__close:hover{color:var(--paper);border-color:var(--gold)}
+.engage-dialog__chip{
+  font-family:var(--sans);font-size:10px;letter-spacing:0.32em;
+  color:var(--torii);text-transform:uppercase;font-weight:600;margin-bottom:18px;
+}
+.engage-dialog__title{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(34px,4vw,46px);line-height:1.05;color:var(--paper);margin-bottom:12px;
+}
+.engage-dialog__title em{font-style:italic;color:var(--gold)}
+.engage-dialog__jp{
+  font-family:var(--jp);font-size:13.5px;color:var(--paper-dim);
+  letter-spacing:0.22em;margin-bottom:22px;
+  border-left:2px solid var(--torii);padding-left:12px;
+}
+.engage-dialog__lede{
+  font-family:var(--serif);font-size:15.5px;line-height:1.65;
+  color:rgba(243,236,225,0.8);margin-bottom:28px;
+}
+.engage-dialog__lede em{font-style:italic;color:var(--gold);font-weight:500}
+.engage-dialog__actions{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.engage-dialog__btn{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 22px;text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.32em;
+  text-transform:uppercase;font-weight:600;
+  transition:background 0.3s, border-color 0.3s, color 0.3s;
+  cursor:pointer;
+}
+.engage-dialog__btn.primary{background:var(--torii);color:var(--paper);border:1px solid var(--torii)}
+.engage-dialog__btn.primary:hover{background:var(--torii-deep);border-color:var(--torii-deep)}
+.engage-dialog__btn.secondary{background:transparent;color:var(--paper);border:1px solid rgba(201,163,90,0.4)}
+.engage-dialog__btn.secondary:hover{color:var(--gold);border-color:var(--gold)}
+.engage-dialog__foot{
+  padding-top:18px;border-top:1px solid rgba(201,163,90,0.18);
+  font-family:var(--sans);font-size:10.5px;letter-spacing:0.2em;
+  color:var(--paper-mute);text-transform:uppercase;text-align:center;
+}
+.engage-dialog__foot a{
+  color:var(--gold);text-decoration:none;
+  font-family:var(--serif);font-style:italic;
+  font-size:14px;letter-spacing:0;text-transform:none;
+  border-bottom:1px solid var(--gold-dim);padding-bottom:1px;
+}
+@media (max-width:540px){.engage-dialog__panel{padding:36px 24px 26px}}
+</style>
+</head>
+<body>
+
+<!-- ============ MINIMAL NAV ============ -->
+<nav class="lp-nav">
+  <a href="#top" class="lp-nav__logo">
+    五代目<small>· Wagyu Ramen · Kyoto Station</small>
+  </a>
+  <a href="#reserve" class="lp-nav__cta">
+    Reserve <span>→</span>
+  </a>
+</nav>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__copy">
+    <span class="hero__chip">
+      <span class="star">★</span> Kyoto Station · Japan
+    </span>
+
+    <div class="hero__badges">
+      <span class="hero__badge"><span class="dot"></span> Open now · 11:00 – 22:00</span>
+      <span class="hero__badge urgent">Muslim-friendly <span class="ar">حلال</span></span>
+      <span class="hero__badge">Steps from JR Kyoto Station</span>
+    </div>
+
+    <h1 class="hero__title">
+      The wagyu bowl
+      <em>they fly in for.</em>
+    </h1>
+
+    <p class="hero__subtitle-en">
+      The bowl travelers come to Japan to taste.
+    </p>
+    <p class="hero__subtitle-jp">旅行者が、ラーメンのために京都まで来る店。</p>
+
+    <p class="hero__lede">
+      A <em>signature wagyu-bone broth</em>, slow-simmered to draw out every
+      drop of umami — finished with <em>flame-torched wagyu</em> laid over the top.
+      We serve a <em>limited number</em> of bowls each day to keep every one at
+      our standard. Walk out of Kyoto Station, walk into this bowl.
+    </p>
+
+    <p class="hero__catch-jp">和牛の牛骨を煮出したベーススープに、炙り和牛をのせた極上の一品。</p>
+
+    <div class="hero__ctas">
+      <a href="#reserve" class="btn-reserve">
+        Reserve a seat <span class="arrow">→</span>
+      </a>
+      <a href="tel:+818028002880" class="btn-tel">
+        <span class="icon">☎</span>
+        <span>
+          080-2800-2880
+          <small>Or call us</small>
+        </span>
+      </a>
+    </div>
+
+    <div class="hero__urgency">
+      <span>Today's seats: <em>limited</em>. Most days sell out by 7pm.</span>
+    </div>
+  </div>
+
+  <div class="hero__photo">
+    <div class="hero__slides">
+      <img class="hero__slide is-active" src="ramen-image/6.jpg" alt="Wagyu ramen — spicy broth with marbled wagyu">
+      <img class="hero__slide" src="ramen-image/9.jpg" alt="Wagyu ramen — flame-torched wagyu">
+      <img class="hero__slide" src="ramen-image/8.jpg" alt="Wagyu ramen — noodle lift, spicy broth">
+      <img class="hero__slide" src="ramen-image/7.jpg" alt="Wagyu ramen — premium wagyu set">
+    </div>
+    <div class="steam s1"></div>
+    <div class="steam s2"></div>
+    <div class="steam s3"></div>
+
+    <div class="hero__photo-tag">
+      <span class="badge">★ Signature</span>
+      <span class="meta">100% Japanese Wagyu</span>
+    </div>
+
+    <blockquote class="hero__photo-quote">
+      The slice of wagyu half-cooks in the broth as you watch.
+      Photos don't do it justice.
+      <span class="src">— TripAdvisor · ★★★★★</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ THE BOWL ============ -->
+<section class="bowl-section">
+  <div class="bowl__head">
+    <div class="bowl__chapter">The Bowl · 一杯</div>
+    <h2 class="bowl__title">A bowl <em>worth flying for.</em></h2>
+    <p class="bowl__lede">日本のために、日本でしか出せない一杯を。</p>
+    <p class="bowl__intro">
+      Travelers come to Kyoto for many things. <em>This bowl</em> is one of them.
+      Sliced 100% Japanese wagyu, layered over our alcohol-free broth, finished
+      with leek and chili threads — a ramen that exists at the intersection of
+      <em>real wagyu</em> and <em>real ramen</em>, and nothing else like it in the city.
+    </p>
+  </div>
+
+  <div class="bowl__hero">
+    <div class="bowl__photo">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+      <span class="label">★ Signature</span>
+      <img src="ramen-image/8.jpg" alt="Wagyu ramen — the bowl up close">
+    </div>
+
+    <div class="bowl__details">
+      <h3>Wagyu <em>Ramen.</em></h3>
+      <div class="name-jp">和牛ラーメン · 100% Japanese Wagyu</div>
+
+      <p class="desc">
+        Thin slices of wagyu fanned across the surface, glistening, ready
+        to <em>half-cook in the broth</em> the moment it arrives. The
+        kitchen aims the spotlight at the bowl, the steam carries straight
+        up, and you have about ten seconds to take the photo before the
+        first bite calls you back.
+      </p>
+
+      <ul class="ingredients">
+        <li><span><em>100% Japanese wagyu</em> — Platinum or Gold cut</span></li>
+        <li><span><em>Alcohol-free broth</em> — slow-simmered in-house</span></li>
+        <li><span>Choice of <em>miso, soy sauce, or spicy</em></span></li>
+        <li><span>Hand-cut wheat noodles</span></li>
+        <li><span>Leek, chili thread, scallion</span></li>
+        <li><span>Optional <em>onsen egg</em></span></li>
+      </ul>
+
+      <a href="#reserve" class="bowl__cta">
+        Reserve your bowl <span>→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="why">
+    <div class="why__head">
+      <h3>Why <em>this bowl,</em> nowhere else.</h3>
+      <p>このラーメンだけの理由</p>
+    </div>
+
+    <div class="why__grid">
+      <div class="why__card">
+        <div class="num">01</div>
+        <h4>Real <em>wagyu</em></h4>
+        <div class="jp">本物の和牛</div>
+        <p>Not "wagyu-style." Not imported. <em>100% Japanese Wagyu</em>, purchased whole-head, from farms our owner visits in person.</p>
+      </div>
+
+      <div class="why__card">
+        <div class="num">02</div>
+        <h4>Alcohol-free, <em>by design</em></h4>
+        <div class="jp">最初からアルコールフリー</div>
+        <p>Every broth, every sauce, every marinade — <em>reformulated from scratch</em>. Not adapted. Built this way.</p>
+      </div>
+
+      <div class="why__card">
+        <div class="num">03</div>
+        <h4>Limited per <em>service</em></h4>
+        <div class="jp">一日数量限定</div>
+        <p>We cap the bowls per service so each one hits the table at our standard. Reservations are <em>strongly recommended</em>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLAVORS ============ -->
+<section class="flavors-section">
+  <div class="flavors__head">
+    <div class="flavors__chapter">Flavors · 三つの味</div>
+    <h2 class="flavors__title">Choose your <em>broth.</em></h2>
+    <p class="flavors__lede">三つの味、ふたつのグレード</p>
+  </div>
+
+  <div class="flavors__grid">
+
+    <article class="flavor">
+      <div class="flavor__photo">
+        <span class="accent miso">Miso · 味噌</span>
+        <img src="ramen-image/7.jpg" alt="Miso wagyu ramen">
+      </div>
+      <div class="flavor__body">
+        <div class="flavor__num">No. 01 · The classic</div>
+        <h3 class="flavor__name">Wagyu <em>Miso Ramen</em></h3>
+        <p class="flavor__jp">和牛味噌ラーメン</p>
+        <p class="flavor__desc">A <em>rich, deep miso broth</em> aged in our kitchen, layered with the umami of the wagyu slices. The most ordered of the three.</p>
+        <div class="flavor__meta">
+          <div><div class="k">Heat</div><div class="v">Mild</div></div>
+          <div><div class="k">Profile</div><div class="v"><em>Earthy, rich</em></div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="flavor">
+      <div class="flavor__photo">
+        <span class="accent soy">Soy · 醤油</span>
+        <img src="ramen-image/9.jpg" alt="Soy wagyu ramen">
+      </div>
+      <div class="flavor__body">
+        <div class="flavor__num">No. 02 · The traditional</div>
+        <h3 class="flavor__name">Wagyu <em>Shoyu Ramen</em></h3>
+        <p class="flavor__jp">和牛醤油ラーメン</p>
+        <p class="flavor__desc">A clean, traditional <em>shoyu broth</em> that lets the wagyu speak first. For purists, and for first-timers in Japan.</p>
+        <div class="flavor__meta">
+          <div><div class="k">Heat</div><div class="v">None</div></div>
+          <div><div class="k">Profile</div><div class="v"><em>Clean, savory</em></div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="flavor">
+      <div class="flavor__photo">
+        <span class="accent spicy">Spicy · 辛味</span>
+        <img src="ramen-image/6.jpg" alt="Spicy wagyu ramen">
+      </div>
+      <div class="flavor__body">
+        <div class="flavor__num">No. 03 · The bold one</div>
+        <h3 class="flavor__name">Wagyu <em>Spicy Ramen</em></h3>
+        <p class="flavor__jp">和牛辛味ラーメン</p>
+        <p class="flavor__desc">Our <em>signature spicy broth</em>, layered with house chili oil and fresh chili threads. The heat lifts the fat off the wagyu in waves.</p>
+        <div class="flavor__meta">
+          <div><div class="k">Heat</div><div class="v">Medium-hot</div></div>
+          <div><div class="k">Profile</div><div class="v"><em>Bold, lifted</em></div></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="grades">
+    <div class="grades__head">
+      Then <em>your grade.</em>
+      <small>グレードを選ぶ</small>
+    </div>
+
+    <div class="grade">
+      <div class="grade__title">Platinum · プラチナ</div>
+      <div class="grade__name">Tenderloin · Sirloin · Ribeye</div>
+      <div class="grade__desc">Our top three cuts of 100% Japanese wagyu. Tender, marbled, intense.</div>
+    </div>
+
+    <div class="grade">
+      <div class="grade__title">Gold · ゴールド</div>
+      <div class="grade__name">Rump · Sirloin cap · Shoulder loin</div>
+      <div class="grade__desc">Lean, deeply savory cuts — the connoisseur's choice for real umami.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story-section">
+  <div class="story__inner">
+
+    <div class="story__photo">
+      <span class="tag">Since 1962 · 五代目</span>
+      <img src="ramen-image/9.jpg" alt="Five generations of wagyu craftsmen">
+    </div>
+
+    <div>
+      <span class="story__chip">Our story · オーナーの想い</span>
+      <h2 class="story__title">From <em>real wagyu,</em> a real bowl.</h2>
+      <p class="story__jp">本物の和牛から、本物の一杯を。</p>
+
+      <div class="story__body">
+        <p>Our family started as wagyu merchants in <em>1962</em>. Five generations of facing cattle, judging meat, and refining the same craft — wholesale, butcher, restaurant.</p>
+        <p>In my thirties, I visited America, and the "WAGYU" I saw there shocked me. Australian and American cattle being sold as wagyu, people smiling, saying "<em>so this is wagyu?</em>" — and what they ate wasn't the real thing.</p>
+        <p>As the fifth generation, I made a decision: <em>deliver real wagyu to the world again</em>. Not the over-fattened industrial cuts. <em>Healthy lean wagyu</em> with deep umami in the meat itself. That's the wagyu in this bowl.</p>
+        <p>And <em>Kyoto</em> — the heart of Japan's food culture — is where we serve it as ramen. Walk out of Kyoto Station, walk into this bowl. <em>Muslim-friendly</em> by design, alcohol-free, made for travelers who came to Japan for the real thing.</p>
+        <p class="story__quote">
+          "Real wagyu, for everyone in the world."
+          <small>— 五代目 · Godaime Wagyu Tokyo Owner</small>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TRUST (Muslim-friendly) ============ -->
+<section class="trust-section">
+  <div class="trust__inner">
+
+    <div class="trust__copy">
+      <span class="chip">Muslim-friendly · ムスリムフレンドリー</span>
+      <h2>Eat <em>without worry.</em></h2>
+      <p class="jp">安心して、思いきり召しあがってください。</p>
+      <ul>
+        <li><span><em>100% Muslim-friendly</em> Japanese wagyu — sourced from approved suppliers, every cut.</span></li>
+        <li><span><em>Alcohol-free</em> broths and sauces. Every recipe reformulated, not adapted.</span></li>
+        <li><span><em>Separated cookware</em>, color-coded and audited monthly.</span></li>
+        <li><span><em>Prayer room</em> on-site. Multilingual staff (English, Bahasa, Arabic on request).</span></li>
+        <li><span>Ingredient cards in <em>English, Bahasa, Arabic</em> on request at the table.</span></li>
+      </ul>
+    </div>
+
+    <div class="trust__panel">
+      <div class="top">
+        <span>Muslim-friendly</span>
+        <span class="ar">صديق المسلم</span>
+      </div>
+      <div class="seal">
+        <div class="ring"><span class="ar-big">حلال</span></div>
+        <div class="label-en"><em>Muslim-friendly Ramen.</em></div>
+        <div class="label-jp">ムスリムフレンドリー 和牛ラーメン</div>
+      </div>
+      <div class="bottom">
+        <div><span class="k">Sourcing</span><span class="v">Approved suppliers</span></div>
+        <div><span class="k">Coverage</span><span class="v">All dishes</span></div>
+        <div><span class="k">Prayer room</span><span class="v">On-site</span></div>
+        <div><span class="k">Recipes</span><span class="v">Alcohol-free</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews-section">
+
+  <div class="reviews__head">
+    <div>
+      <div class="reviews__chapter">Reviews · お客様の声</div>
+      <h2 class="reviews__title">Travelers who <em>came back twice.</em></h2>
+      <p class="reviews__title-jp">日本に何度も来る人の、定番ラーメン店</p>
+    </div>
+    <div class="reviews__rating">
+      <div class="stars">★★★★★</div>
+      <div class="score"><em>4.9</em> / 5.0</div>
+      <div style="margin-top:6px">Based on <em>320+</em> reviews</div>
+    </div>
+  </div>
+
+  <div class="review-grid">
+
+    <article class="review-card">
+      <div class="top"><span class="stars">★★★★★</span><span class="source">Google</span></div>
+      <p class="body">Best ramen of my life. The <em>wagyu melted</em> right into the broth on contact — and to find this halal in Kyoto is a miracle. Booked again for next trip.</p>
+      <div class="foot">
+        <span class="name">Aisha M.</span>
+        <span class="meta"><span class="country">Kuala Lumpur</span> · Visited Oct 2025</span>
+      </div>
+    </article>
+
+    <article class="review-card">
+      <div class="top"><span class="stars">★★★★★</span><span class="source">TripAdvisor</span></div>
+      <p class="body">Came on a Tuesday. By 7pm they were turning people away. <em>Reserve before you fly.</em> The spicy broth is unreal — three weeks later I'm still thinking about it.</p>
+      <div class="foot">
+        <span class="name">James T.</span>
+        <span class="meta"><span class="country">Sydney</span> · Visited Sep 2025</span>
+      </div>
+    </article>
+
+    <article class="review-card">
+      <div class="top"><span class="stars">★★★★★</span><span class="source">Google</span></div>
+      <p class="body">Solo Muslim traveler here. Walking in, the staff greeted me in English, handed me an ingredient card in Bahasa. <em>I cried a little when the bowl arrived.</em></p>
+      <div class="foot">
+        <span class="name">Nadia P.</span>
+        <span class="meta"><span class="country">Jakarta</span> · Visited Aug 2025</span>
+      </div>
+    </article>
+
+    <article class="review-card">
+      <div class="top"><span class="stars">★★★★★</span><span class="source">TripAdvisor</span></div>
+      <p class="body">Brought my wife and two kids. Family-friendly, prayer room available, no alcohol in the room — and the wagyu ramen was <em>better than any I'd had on this trip</em>. We came back twice in one Kyoto stay.</p>
+      <div class="foot">
+        <span class="name">Yusuf A.</span>
+        <span class="meta"><span class="country">Dubai, UAE</span> · Visited Jul 2025</span>
+      </div>
+    </article>
+
+    <article class="review-card">
+      <div class="top"><span class="stars">★★★★★</span><span class="source">Google</span></div>
+      <p class="body">Picked the miso. The owner came to our table to explain the cuts. You can <em>taste</em> that someone selected this meat by hand. Easily the highlight of our Kyoto week.</p>
+      <div class="foot">
+        <span class="name">Sarah L.</span>
+        <span class="meta"><span class="country">Singapore</span> · Visited Jun 2025</span>
+      </div>
+    </article>
+
+    <article class="review-card">
+      <div class="top"><span class="stars">★★★★☆</span><span class="source">TripAdvisor</span></div>
+      <p class="body">Sold out by 6:30pm on a weekend — but they squeezed us in at the counter the next day after we called. <em>Worth every second of the wait.</em> Reserve ahead, seriously.</p>
+      <div class="foot">
+        <span class="name">Maria C.</span>
+        <span class="meta"><span class="country">Madrid</span> · Visited May 2025</span>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="reviews__cta">
+    <p class="reviews__cta-text">Join over <em>320 travelers</em> who say this was their best meal in Japan.</p>
+    <a href="#reserve">Reserve your seat <span>→</span></a>
+  </div>
+
+</section>
+
+<!-- ============ ACCESS ============ -->
+<section class="access-section">
+
+  <div class="access__head">
+    <div class="access__chapter">Access · アクセス</div>
+    <h2 class="access__title">Steps from <em>JR Kyoto Station.</em></h2>
+    <p class="access__jp">京都駅から徒歩すぐ</p>
+  </div>
+
+  <div class="access__grid">
+
+    <div class="access__map">
+      <span class="label">Kyoto Station · 京都駅前</span>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.30138908584!2d135.75852559999998!3d34.981648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600109f6e8d68b47%3A0xfd230ee012a28443!2zV2FneXUgQmVlZiBSYW1lbiAoSGFsYWwpIG5vb2RsZSAoSmFwYW5lc2UgRm9vZCkgS3lvdG8gU3RhdGlvbiBSZXN0YXVyYW50IOS6rOmDvSDlkozniZsg5ouJ6Z2iIOmkkOWOhQ!5e1!3m2!1sja!2sjp!4v1778573183899!5m2!1sja!2sjp"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Kyoto Station Wagyu Ramen — map"></iframe>
+      <a class="open-link" href="https://maps.app.goo.gl/o6NLaChG5B4tP85f7" target="_blank" rel="noopener">↗ Directions</a>
+    </div>
+
+    <div class="access__info">
+      <div class="k">— Store</div>
+      <h3>Wagyu Beef Ramen <em>(Halal)</em></h3>
+      <div class="head-jp">noodle (Japanese Food) · Kyoto Station Restaurant</div>
+      <span class="head-cn">京都 和牛 拉面 餐厅</span>
+
+      <div class="rows">
+        <div class="row">
+          <span class="rk">Hours</span>
+          <span class="rv"><em>11:00 — 22:00</em><small>Open every day · 年中無休</small></span>
+        </div>
+        <div class="row">
+          <span class="rk">Phone</span>
+          <span class="rv"><em><a href="tel:+818028002880" style="color:inherit;text-decoration:none">080-2800-2880</a></em><small>Reservations welcome</small></span>
+        </div>
+        <div class="row">
+          <span class="rk">Address</span>
+          <span class="rv">
+            <em>3-31</em> Higashikujō-Kita-Karasumachō, Minami-ku, Kyoto
+            <small>〒601-8017 京都市南区東九条北烏丸町3-31</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Station</span>
+          <span class="rv">
+            <em>JR Kyoto Station</em>
+            <small>JR京都駅 · 東海道新幹線</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Facilities</span>
+          <span class="rv">
+            Prayer room · Wi-Fi · Non-smoking · Cashless
+            <small>祈祷室・Wi-Fi・禁煙・キャッシュレス</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Languages</span>
+          <span class="rv">English · 日本語 · 中文 · Bahasa · العربية</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============ RESERVE (final CTA) ============ -->
+<section class="reserve-section" id="reserve">
+  <div class="reserve__inner">
+
+    <div class="reserve__chapter">Reserve · ご予約</div>
+
+    <h2 class="reserve__title">
+      Bowls run out.
+      <span class="strike">— Yours doesn't have to.</span>
+    </h2>
+
+    <p class="reserve__jp">枠は限られています。今すぐご予約を。</p>
+
+    <p class="reserve__lede">
+      We serve a limited number of bowls each service. Most weekdays sell out
+      by 8pm; weekends often by 7pm. <em>Reservations take under a minute</em>
+      and lock in your seat at the broth-and-wagyu standard you came for.
+    </p>
+
+    <div class="reserve__cta-group">
+      <a class="reserve__cta-primary" href="tel:+818028002880">
+        Call to reserve <span class="arrow">→</span>
+      </a>
+      <a class="reserve__cta-secondary" href="tel:+818028002880">
+        <span class="icon">☎</span>
+        <span>
+          080-2800-2880
+          <small>Or call us</small>
+        </span>
+      </a>
+    </div>
+
+    <div class="reserve__alts">
+      <a href="mailto:godaimeinfo@gmail.com?subject=Question%20about%20Kyoto%20Station">
+        Ask a question · <em>godaimeinfo@gmail.com</em>
+      </a>
+      <a href="https://maps.app.goo.gl/o6NLaChG5B4tP85f7" target="_blank" rel="noopener">
+        Directions · <em>Kyoto Station</em>
+      </a>
+    </div>
+
+    <p class="reserve__status">
+      Today's seats: <em>limited.</em> Open <em>11:00 – 22:00</em> every day.
+    </p>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ STICKY LIVE ACTIVITY ============ -->
+<div class="sticky-live" id="stickyLive">
+  <button class="sticky-live__close" id="stickyLiveClose" aria-label="Close">×</button>
+  <div class="sticky-live__inner">
+    <div class="sticky-live__item">
+      <span class="sticky-live__dot"></span>
+      <span><em id="sticky-viewing">10</em> people viewing now</span>
+    </div>
+    <div class="sticky-live__sep"></div>
+    <div class="sticky-live__item">
+      <span class="sticky-live__check">✓</span>
+      <span><em id="sticky-reserved">42</em> reservations this week</span>
+    </div>
+    <a class="sticky-live__cta" href="#reserve">
+      Reserve <span>→</span>
+    </a>
+  </div>
+</div>
+
+<!-- ============ 20-SECOND ENGAGEMENT DIALOG ============ -->
+<div class="engage-dialog" id="engageDialog" role="dialog" aria-modal="true" hidden>
+  <div class="engage-dialog__backdrop"></div>
+  <div class="engage-dialog__panel">
+    <button class="engage-dialog__close" aria-label="Close">✕</button>
+    <div class="engage-dialog__chip">— Kyoto Station · 京都駅前店</div>
+    <h2 class="engage-dialog__title">Don't miss <em>your bowl.</em></h2>
+    <p class="engage-dialog__jp">本日の枠、まもなく満席です</p>
+    <p class="engage-dialog__lede">
+      We serve a <em>limited number of bowls</em> each service to keep quality at
+      our standard. Reserve now to secure your seat — most days sell out by 7pm.
+    </p>
+    <div class="engage-dialog__actions">
+      <a class="engage-dialog__btn primary" href="tel:+818028002880">
+        Call to reserve <span>→</span>
+      </a>
+      <a class="engage-dialog__btn secondary" href="mailto:godaimeinfo@gmail.com?subject=Question%20about%20Kyoto%20Station">
+        Ask us a question
+      </a>
+    </div>
+    <div class="engage-dialog__foot">
+      Or call <a href="tel:+818028002880">080-2800-2880</a> · 11:00 – 22:00 every day
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hero slideshow — fade between images every ~4 seconds
+  (function(){
+    var slides = document.querySelectorAll('.hero__slide');
+    if (slides.length < 2) return;
+    var current = 0;
+    setInterval(function(){
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+    }, 4500);
+  })();
+
+  // Sticky live activity
+  (function(){
+    var v = document.getElementById('sticky-viewing');
+    var r = document.getElementById('sticky-reserved');
+    var s = document.getElementById('stickyLive');
+    var c = document.getElementById('stickyLiveClose');
+    function setV(){ if(v) v.textContent = 7 + Math.floor(Math.random()*8); }
+    function setR(){
+      var n = parseInt(sessionStorage.getItem('kyoto-reserved'),10);
+      if(!n || isNaN(n)){ n = 38 + Math.floor(Math.random()*12); sessionStorage.setItem('kyoto-reserved',n); }
+      if(Math.random()<0.3){ n+=1; sessionStorage.setItem('kyoto-reserved',n); }
+      if(r) r.textContent = n;
+    }
+    setV(); setR();
+    setInterval(setV, 9000);
+    setInterval(setR, 22000);
+    c && c.addEventListener('click', function(){
+      s.classList.add('hidden');
+      document.body.style.paddingBottom = '0';
+    });
+  })();
+
+  // 20-second engagement dialog
+  (function(){
+    var KEY = 'kyoto-engaged-shown';
+    if (sessionStorage.getItem(KEY) === '1') return;
+    var dlg = document.getElementById('engageDialog');
+    if (!dlg) return;
+    var close = dlg.querySelector('.engage-dialog__close');
+    var backdrop = dlg.querySelector('.engage-dialog__backdrop');
+    function open(){
+      dlg.hidden = false;
+      requestAnimationFrame(function(){ dlg.classList.add('show'); });
+      sessionStorage.setItem(KEY, '1');
+    }
+    function shut(){
+      dlg.classList.remove('show');
+      setTimeout(function(){ dlg.hidden = true; }, 400);
+    }
+    setTimeout(open, 20000);
+    close && close.addEventListener('click', shut);
+    backdrop && backdrop.addEventListener('click', shut);
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && !dlg.hidden) shut();
+    });
+    dlg.querySelectorAll('.engage-dialog__btn').forEach(function(a){
+      a.addEventListener('click', shut);
+    });
+  })();
+</script>
+
+</body>
+</html>
