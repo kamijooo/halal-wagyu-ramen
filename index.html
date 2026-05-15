@@ -124,8 +124,8 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 /* PC: 画面右下にどんと配置。動画と一緒の側、文字とは被らない */
 .hero__mei--pc{
   display:block;
-  font-size:min(78vh, 50vw);
-  bottom:-8vh;right:-3vw;
+  font-size:min(70vh, 46vw);
+  bottom:2vh;right:-2vw;
   transform:rotate(-4deg);
 }
 .hero__mei--mobile{display:none}
@@ -315,7 +315,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 @media (max-width:1100px){
   .hero__content{padding:120px 6vw 40px}
   .hero__title{font-size:clamp(56px, 10vw, 112px)}
-  .hero__mei--pc{font-size:min(70vh, 75vw);bottom:-10vh;right:-8vw}
+  .hero__mei--pc{font-size:min(60vh, 70vw);bottom:2vh;right:-6vw}
   .hero__bottom{flex-direction:column;align-items:flex-start;gap:20px}
 }
 
@@ -324,9 +324,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   /* スマホ: スライドショーは画面上部40%の「横長枠」、コンテンツはその下に流す */
   .hero{min-height:100vh;min-height:100svh}
   .hero__slideshow{
-    position:absolute;top:0;left:0;right:0;
+    inset:auto;  /* PC時の inset:0 を打ち消す */
+    position:absolute;
+    top:0;left:0;right:0;
+    bottom:auto;
     height:40vh;
-    inset:auto;  /* PC時の inset:0 を打ち消し */
   }
   .hero__slideshow::before{
     background:
@@ -660,13 +662,13 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   <!-- フルスクリーンのスライドショー（画像4枚） -->
   <div class="hero__slideshow" id="heroSlideshow">
     <div class="hero__slide is-active" data-slide="0">
-      <img src="ramen-image/8.jpg" alt="Signature wagyu ramen">
+      <img src="ramen-image/7.jpg" alt="Wagyu ramen with donburi set">
     </div>
     <div class="hero__slide" data-slide="1">
-      <img src="ramen-image/6.jpg" alt="Wagyu ramen bowl">
+      <img src="ramen-image/8.jpg" alt="Signature wagyu ramen">
     </div>
     <div class="hero__slide" data-slide="2">
-      <img src="ramen-image/7.jpg" alt="Wagyu ramen with donburi set">
+      <img src="ramen-image/6.jpg" alt="Wagyu ramen bowl">
     </div>
     <div class="hero__slide" data-slide="3">
       <img src="ramen-image/9.jpg" alt="The craft of five generations">
