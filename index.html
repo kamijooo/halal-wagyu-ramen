@@ -90,17 +90,13 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .hero__slideshow::before{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(105deg,
-      rgba(10,8,5,0.78) 0%,
-      rgba(10,8,5,0.55) 28%,
-      rgba(10,8,5,0.18) 50%,
-      rgba(10,8,5,0.08) 70%,
-      rgba(10,8,5,0.35) 100%),
     linear-gradient(180deg,
-      rgba(10,8,5,0.35) 0%,
-      transparent 25%,
-      transparent 70%,
-      rgba(10,8,5,0.85) 100%);
+      rgba(10,8,5,0.45) 0%,
+      rgba(10,8,5,0.15) 15%,
+      transparent 35%,
+      rgba(10,8,5,0.4) 55%,
+      rgba(10,8,5,0.85) 80%,
+      rgba(10,8,5,0.95) 100%);
 }
 /* 端のヴィネット */
 .hero__slideshow::after{
@@ -144,8 +140,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 }
 
 .hero__center{
-  display:flex;align-items:center;
+  display:flex;align-items:flex-end;
   min-height:55vh;
+  padding-bottom:6vh;
 }
 .hero__copy{
   max-width:780px;
@@ -198,45 +195,112 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 }
 
 .hero__cta-group{
-  display:flex;align-items:center;gap:30px;flex-wrap:wrap;
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
 }
-.hero__cta-primary{
-  display:inline-flex;align-items:center;gap:16px;
-  padding:22px 44px;
-  background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);
-  color:var(--paper);text-decoration:none;
-  font-family:var(--sans);font-size:12px;letter-spacing:0.36em;
-  text-transform:uppercase;font-weight:700;
-  position:relative;overflow:hidden;
-  border:1px solid var(--gold);
-  transition:transform 0.4s, box-shadow 0.4s, filter 0.3s;
-  box-shadow:
-    0 18px 50px rgba(196,69,43,0.45),
-    0 4px 14px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.15);
-}
-.hero__cta-primary::before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
-  transform:translateX(-100%);transition:transform 0.7s ease;
-}
-.hero__cta-primary:hover{transform:translateY(-4px);filter:brightness(1.06)}
-.hero__cta-primary:hover::before{transform:translateX(100%)}
-.hero__cta-primary .arrow{font-family:serif;font-size:18px;line-height:1;color:var(--gold-pale)}
 
+/* ============================================================
+ * 予約ボタン — 朱印(はんこ) × 暖簾(のれん) インスパイア
+ * - くすんだ朱（神社の鳥居や漆器の色）
+ * - 内外の二重金枠（判子の縁）
+ * - 四隅の小さなL字マーカー（額装感）
+ * - 上下の細い縦線（暖簾の布が垂れる風）
+ * - 「予約」の小さな添え書き
+ * ============================================================ */
+.hero__cta-primary{
+  position:relative;
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 38px;
+  /* くすんだ朱：神社/漆器系の落ち着いた赤 */
+  background:linear-gradient(180deg, #a64537 0%, #8e3025 100%);
+  color:var(--gold-pale);text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.34em;
+  text-transform:uppercase;font-weight:700;
+  /* 外側の金枠 */
+  border:1px solid rgba(212,175,110,0.85);
+  /* 内側の細い金枠（判子の二重縁） */
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,110,0.18),
+    inset 0 0 0 5px rgba(154,53,32,0.0),
+    inset 0 0 0 6px rgba(212,175,110,0.32),
+    0 8px 24px rgba(154,53,32,0.35),
+    0 2px 8px rgba(0,0,0,0.4);
+  transition:transform 0.35s, box-shadow 0.35s, filter 0.3s;
+}
+/* 暖簾の縦線：左右に細く2本ずつ垂らす */
+.hero__cta-primary::before,
+.hero__cta-primary::after{
+  content:"";position:absolute;
+  top:-6px;bottom:-6px;width:1px;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(212,175,110,0.5) 15%,
+    rgba(212,175,110,0.7) 50%,
+    rgba(212,175,110,0.5) 85%,
+    transparent 100%);
+  pointer-events:none;
+}
+.hero__cta-primary::before{left:-1px}
+.hero__cta-primary::after{right:-1px}
+
+/* 四隅のL字マーカー（判子の角飾り） */
+.hero__cta-primary > .corner{
+  position:absolute;width:7px;height:7px;
+  border:1px solid var(--gold);
+  pointer-events:none;
+}
+.hero__cta-primary > .corner.tl{top:3px;left:3px;border-right:0;border-bottom:0}
+.hero__cta-primary > .corner.tr{top:3px;right:3px;border-left:0;border-bottom:0}
+.hero__cta-primary > .corner.bl{bottom:3px;left:3px;border-right:0;border-top:0}
+.hero__cta-primary > .corner.br{bottom:3px;right:3px;border-left:0;border-top:0}
+
+/* ラベル本体（英語＋下に「予約」） */
+.hero__cta-primary .label{
+  display:flex;flex-direction:column;gap:3px;
+  align-items:flex-start;line-height:1;
+}
+.hero__cta-primary .label-en{
+  font-family:var(--sans);font-size:11px;letter-spacing:0.34em;
+  text-transform:uppercase;font-weight:700;color:var(--gold-pale);
+}
+.hero__cta-primary .label-jp{
+  font-family:var(--jp);font-size:8.5px;letter-spacing:0.45em;
+  color:rgba(212,175,110,0.7);font-weight:500;
+  padding-top:1px;
+}
+.hero__cta-primary .arrow{
+  font-family:serif;font-size:16px;line-height:1;
+  color:var(--gold);opacity:0.9;
+  transition:transform 0.3s;
+}
+.hero__cta-primary:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,110,0.3),
+    inset 0 0 0 6px rgba(212,175,110,0.45),
+    0 12px 32px rgba(154,53,32,0.5),
+    0 3px 10px rgba(0,0,0,0.45);
+}
+.hero__cta-primary:hover .arrow{transform:translateX(4px)}
+
+/* 電話番号 — 控えめな金色italic、ボタンに視線を譲る */
 .hero__cta-tel{
   font-family:var(--display);font-style:italic;font-weight:500;
-  font-size:24px;color:var(--paper);text-decoration:none;
-  letter-spacing:0.01em;position:relative;padding:8px 0;
+  font-size:16px;color:var(--gold-pale);text-decoration:none;
+  letter-spacing:0.01em;position:relative;padding:6px 0;
   transition:color 0.3s;
-  text-shadow:0 2px 10px rgba(0,0,0,0.6);
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+  opacity:0.92;
 }
-.hero__cta-tel::before{content:"☎";display:inline-block;margin-right:10px;font-style:normal;font-size:18px;opacity:0.75;vertical-align:1px}
+.hero__cta-tel::before{
+  content:"☎";display:inline-block;margin-right:8px;
+  font-style:normal;font-size:13px;opacity:0.7;vertical-align:1px;
+}
 .hero__cta-tel::after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:rgba(212,175,110,0.45);transition:background 0.3s;
+  background:rgba(212,175,110,0.3);transition:background 0.3s;
 }
-.hero__cta-tel:hover{color:var(--gold-pale)}
+.hero__cta-tel:hover{color:var(--gold);opacity:1}
 .hero__cta-tel:hover::after{background:var(--gold)}
 
 /* 下: トラスト + スクロールサイン */
@@ -280,7 +344,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
         rgba(10,8,5,0.92) 100%);
   }
   .hero__content{padding:100px 22px 28px;gap:24px}
-  .hero__center{min-height:auto;padding:24px 0}
+  .hero__center{min-height:auto;padding:18vh 0 24px;align-items:flex-end}
   .hero__mei--pc{display:none}
   .hero__mei--mobile{
     display:block;
@@ -293,9 +357,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   .hero__eyebrow{font-size:10px;letter-spacing:0.32em;margin-bottom:22px}
   .hero__title{font-size:52px;line-height:0.98;margin-bottom:22px}
   .hero__subtitle{font-size:18px;line-height:1.45;margin-bottom:34px}
-  .hero__cta-group{flex-direction:column;align-items:stretch;gap:18px}
-  .hero__cta-primary{justify-content:center;padding:20px 28px;font-size:11px}
-  .hero__cta-tel{text-align:center;font-size:22px;align-self:center;padding-top:4px}
+  .hero__cta-group{flex-direction:column;align-items:stretch;gap:16px}
+  .hero__cta-primary{justify-content:center;padding:16px 28px}
+  .hero__cta-tel{text-align:center;font-size:15px;align-self:center;padding-top:4px}
   .hero__bottom{padding-top:24px;gap:14px}
   .hero__trust{gap:14px;flex-direction:column;align-items:flex-start}
   .hero__trust-divider{display:none}
@@ -634,7 +698,15 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 
         <div class="hero__cta-group">
           <a href="https://www.tablecheck.com/shops/5wkyotostation/reserve" target="_blank" rel="noopener" class="hero__cta-primary">
-            Reserve a seat <span class="arrow">→</span>
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <span class="label">
+              <span class="label-en">Reserve a seat</span>
+              <span class="label-jp">予約</span>
+            </span>
+            <span class="arrow">→</span>
           </a>
           <a href="tel:+818028002880" class="hero__cta-tel">
             080-2800-2880
