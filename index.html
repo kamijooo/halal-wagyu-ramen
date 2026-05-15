@@ -109,30 +109,29 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   box-shadow:inset 0 0 200px rgba(10,8,5,0.65);
 }
 
-/* 巨大な「麺」— 動画の上にしっかり重なる書道感 */
+/* 巨大な「麺」— 確実に金色で見える書道感。文字エリアと被らない位置に */
 .hero__mei{
   position:absolute;
   font-family:var(--brush);
   font-weight:400;
-  color:var(--gold-deep);
-  opacity:0.22;
+  color:var(--gold-bright);
+  opacity:0.32;
   pointer-events:none;
   user-select:none;
   z-index:3;
   line-height:0.9;
   letter-spacing:-0.05em;
-  /* 軽い影で動画と分離（書道の墨が紙に染みた感じ） */
+  /* 動画の暗い部分でも輪郭が見えるよう、軽い金色のグローを足す */
   text-shadow:
-    0 4px 30px rgba(10,8,5,0.7),
-    0 0 80px rgba(166,132,69,0.15);
-  /* 混合モード：色がもう少し馴染む */
-  mix-blend-mode:screen;
+    0 0 60px rgba(230,194,128,0.35),
+    0 4px 20px rgba(0,0,0,0.4);
 }
+/* PC: 画面右下にどんと配置。動画と一緒の側、文字とは被らない */
 .hero__mei--pc{
   display:block;
-  font-size:min(95vh, 70vw);
-  top:50%;left:-5vw;
-  transform:translateY(-50%) rotate(-3deg);
+  font-size:min(78vh, 50vw);
+  bottom:-8vh;right:-3vw;
+  transform:rotate(-4deg);
 }
 .hero__mei--mobile{display:none}
 
@@ -263,33 +262,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .hero__trust-divider{width:1px;height:18px;background:rgba(245,237,224,0.22)}
 
 /* スクロールサイン */
-.hero__scroll{
-  display:inline-flex;align-items:center;gap:14px;
-  font-family:var(--sans);font-size:10px;letter-spacing:0.4em;
-  text-transform:uppercase;color:var(--paper-dim);font-weight:600;
-  text-shadow:0 2px 10px rgba(0,0,0,0.5);
-}
-.hero__scroll-line{
-  position:relative;display:inline-block;width:1px;height:36px;
-  background:rgba(245,237,224,0.18);overflow:hidden;
-}
-.hero__scroll-line::before{
-  content:"";position:absolute;left:0;top:-30%;
-  width:100%;height:50%;
-  background:linear-gradient(180deg, transparent 0%, var(--gold) 100%);
-  animation:scroll-drip 2.4s ease-in-out infinite;
-}
-@keyframes scroll-drip{
-  0%{top:-50%;opacity:0}
-  30%{opacity:1}
-  100%{top:120%;opacity:0}
-}
-
 /* タブレット */
 @media (max-width:1100px){
   .hero__content{padding:120px 6vw 40px}
   .hero__title{font-size:clamp(56px, 10vw, 112px)}
-  .hero__mei--pc{font-size:min(85vh, 95vw);left:-8vw;top:45%}
+  .hero__mei--pc{font-size:min(70vh, 75vw);bottom:-10vh;right:-8vw}
   .hero__bottom{flex-direction:column;align-items:flex-start;gap:20px}
 }
 
@@ -308,11 +285,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   .hero__mei--pc{display:none}
   .hero__mei--mobile{
     display:block;
-    font-size:min(80vh, 110vw);
-    bottom:-15vh;right:-15vw;
-    color:var(--gold-deep);opacity:0.18;
-    transform:rotate(-4deg);
-    mix-blend-mode:screen;
+    font-size:min(55vh, 75vw);
+    top:8vh;right:-12vw;
+    color:var(--gold-bright);opacity:0.28;
+    transform:rotate(-3deg);
+    text-shadow:0 0 40px rgba(230,194,128,0.3), 0 4px 16px rgba(0,0,0,0.4);
   }
   .hero__eyebrow{font-size:10px;letter-spacing:0.32em;margin-bottom:22px}
   .hero__title{font-size:52px;line-height:0.98;margin-bottom:22px}
@@ -324,8 +301,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
   .hero__trust{gap:14px;flex-direction:column;align-items:flex-start}
   .hero__trust-divider{display:none}
   .hero__trust-text{font-size:14px}
-  .hero__scroll{align-self:center}
-  .hero__scroll-line{height:28px}
 }
 
 /* BOWL */
@@ -684,11 +659,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
         <div class="hero__trust-item">
           <span class="hero__trust-text">Reservations recommended</span>
         </div>
-      </div>
-
-      <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <span class="hero__scroll-line"></span>
       </div>
     </div>
 
