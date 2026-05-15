@@ -37,13 +37,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .lp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:linear-gradient(180deg, rgba(10,8,7,0.65) 0%, rgba(10,8,7,0.3) 60%, transparent 100%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background 0.4s, padding 0.4s}
 .lp-nav.scrolled{background:rgba(10,8,7,0.92);padding:12px 32px;border-bottom:1px solid rgba(201,163,90,0.12)}
 .lp-nav__logo{text-decoration:none;display:flex;align-items:center;gap:14px;min-width:0;flex:1}
-.lp-nav__symbol{font-family:var(--jp);font-weight:700;font-size:20px;color:var(--gold);letter-spacing:0.08em;flex-shrink:0;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,0.5);white-space:nowrap}
-.lp-nav__name{display:flex;flex-direction:column;gap:2px;min-width:0;border-left:1px solid rgba(212,175,110,0.3);padding-left:16px}
+.lp-nav__name{display:flex;flex-direction:column;gap:2px;min-width:0}
 .lp-nav__name-en{font-family:var(--display);font-style:italic;font-size:12.5px;color:var(--paper);font-weight:500;line-height:1.25;letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
 .lp-nav__name-cn{font-family:var(--jp);font-size:10px;font-weight:500;color:rgba(245,237,224,0.7);letter-spacing:0.18em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
 .lp-nav__cta{padding:11px 24px;background:transparent;color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid rgba(212,175,110,0.7);transition:background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
 .lp-nav__cta:hover{background:var(--gold);color:var(--ink-deep);border-color:var(--gold);transform:translateY(-1px)}
-@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__symbol{font-size:16px}.lp-nav__name{padding-left:10px;gap:1px}.lp-nav__name-en{font-size:8.5px;letter-spacing:0;line-height:1.3;white-space:normal;overflow:visible;text-overflow:clip;font-style:italic}.lp-nav__name-cn{font-size:8.5px;letter-spacing:0.1em;white-space:nowrap}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
+@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__name{gap:1px}.lp-nav__name-en{font-size:9.5px;letter-spacing:0;line-height:1.3;white-space:normal;overflow:visible;text-overflow:clip;font-style:italic}.lp-nav__name-cn{font-size:9px;letter-spacing:0.1em;white-space:nowrap}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
 
 /* =================================================================
    HERO — Full-screen slideshow background + 麺 overlay + bold text
@@ -316,6 +315,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 .bowl__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
 .bowl__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
 .bowl__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.bowl__photo .bowl__video{width:100%;height:100%;object-fit:cover;display:block}
 .bowl__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
 .bowl__photo .corner{position:absolute;width:50px;height:50px;border:1px solid var(--gold);pointer-events:none}
 .bowl__photo .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}
@@ -575,7 +575,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 <!-- ============ NAV ============ -->
 <nav class="lp-nav">
   <a href="#top" class="lp-nav__logo">
-    <span class="lp-nav__symbol">五代目</span>
     <span class="lp-nav__name">
       <span class="lp-nav__name-en">Kyoto Restaurant Wagyu Beef (Halal) Ramen noodle (Japanese Food)</span>
       <span class="lp-nav__name-cn">京都 和牛 拉面 餐厅</span>
@@ -591,20 +590,16 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
 <!-- ============ HERO（フルスクリーンスライドショー + 巨大「麺」）============ -->
 <section class="hero">
 
-  <!-- フルスクリーンのスライドショー（動画 + 写真3枚） -->
+  <!-- フルスクリーンのスライドショー（画像4枚） -->
   <div class="hero__slideshow" id="heroSlideshow">
     <div class="hero__slide is-active" data-slide="0">
-      <video id="heroVideo"
-             autoplay muted loop playsinline preload="auto"
-             poster="ramen-image/6.jpg">
-        <source src="ramen-image/hero.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="hero__slide" data-slide="1">
       <img src="ramen-image/8.jpg" alt="Signature wagyu ramen">
     </div>
-    <div class="hero__slide" data-slide="2">
+    <div class="hero__slide" data-slide="1">
       <img src="ramen-image/6.jpg" alt="Wagyu ramen bowl">
+    </div>
+    <div class="hero__slide" data-slide="2">
+      <img src="ramen-image/7.jpg" alt="Wagyu ramen with donburi set">
     </div>
     <div class="hero__slide" data-slide="3">
       <img src="ramen-image/9.jpg" alt="The craft of five generations">
@@ -684,8 +679,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
       <span class="corner tr"></span>
       <span class="corner bl"></span>
       <span class="corner br"></span>
-      <span class="label">Signature</span>
-      <img src="ramen-image/8.jpg" alt="Wagyu ramen — the bowl up close">
+      <video class="bowl__video"
+             autoplay muted loop playsinline preload="auto"
+             poster="ramen-image/8.jpg"
+             aria-label="Wagyu ramen — the bowl up close">
+        <source src="ramen-image/hero.mp4" type="video/mp4">
+      </video>
     </div>
 
     <div class="bowl__details">
@@ -1102,43 +1101,22 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;bac
     onScroll();
   })();
 
-  // ヒーロー動画の autoplay フォールバック
-  (function(){
-    var video = document.getElementById('heroVideo');
-    if (!video) return;
-    video.muted = true;
-    var p = video.play();
-    if (p && p.catch){
-      p.catch(function(){
-        var resume = function(){
-          video.play().catch(function(){});
-          document.removeEventListener('touchstart', resume);
-          document.removeEventListener('click', resume);
-          document.removeEventListener('scroll', resume);
-        };
-        document.addEventListener('touchstart', resume, {once:true, passive:true});
-        document.addEventListener('click', resume, {once:true});
-        document.addEventListener('scroll', resume, {once:true, passive:true});
-      });
-    }
-  })();
-
-  // ヒーロースライドショー（動画 + 写真3枚）
+  // ヒーロースライドショー（画像4枚）
   (function(){
     var slideshow = document.getElementById('heroSlideshow');
     if (!slideshow) return;
     var slides = slideshow.querySelectorAll('.hero__slide');
     if (slides.length < 2) return;
     var current = 0;
-    // タイミング: 動画=8秒、画像=5秒ずつ
-    var timings = [8000, 5500, 5500, 5500];
+    // タイミング: 各画像 5.5秒
+    var INTERVAL = 5500;
     function next(){
       slides[current].classList.remove('is-active');
       current = (current + 1) % slides.length;
       slides[current].classList.add('is-active');
-      setTimeout(next, timings[current]);
+      setTimeout(next, INTERVAL);
     }
-    setTimeout(next, timings[0]);
+    setTimeout(next, INTERVAL);
   })();
 
   // Sticky live activity
