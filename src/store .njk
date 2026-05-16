@@ -1,0 +1,1283 @@
+---
+pagination:
+  data: stores.stores
+  size: 1
+  alias: store
+permalink: "/{{ store.region }}/{{ store.slug }}/index.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ store.name_meta }} {{ store.name_cn }}</title>
+<meta name="description" content="{{ store.name_meta }} — looking for halal ramen or halal restaurants near me? Authentic 100% Japanese Wagyu noodle, halal-friendly, near {{ store.station_en }}. The ramen near me locals and travelers come back for.">
+<meta name="keywords" content="halal ramen, halal restaurants, halal near me, ramen near me, noodle, wagyu ramen, halal kyoto, halal japan, wagyu beef halal, japanese food halal">
+<meta property="og:title" content="{{ store.name_meta }} · {{ store.name_cn }}">
+<meta property="og:description" content="Authentic halal ramen — 100% Japanese Wagyu noodle, the halal restaurant near {{ store.station_en }} travelers fly in for.">
+<meta property="og:type" content="restaurant">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&family=Caveat:wght@400;500;600;700&family=Yuji+Boku&family=Yuji+Mai&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink-deep:#0e0a07;--ink:#1f1812;--ink-2:#2a2018;--ink-3:#16110d;--ink-warm:#1a130e;--ink-card:#1c1611;
+  --paper:#f5ede0;--paper-dim:#c8b89e;--paper-mute:#90836f;--paper-faint:rgba(245,237,224,0.55);
+  --gold:#d4af6e;--gold-bright:#e6c280;--gold-pale:#efd9a5;--gold-dim:#8a6f3a;--gold-deep:#a68445;
+  --vermilion:#c4452b;--vermilion-deep:#9a3520;--vermilion-soft:#d76548;
+  --sumi:#1a120a;--pulse-green:#9eb87f;
+  /* hero display 用に Fraunces を採用（モダンセリフ、和の余韻にも馴染む） */
+  --display:'Fraunces','Cormorant Garamond','Times New Roman',serif;
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --jp:'Shippori Mincho',serif;
+  --brush:'Yuji Boku','Yuji Mai','Shippori Mincho',serif;
+  --ar:'Amiri',serif;--sans:'Inter',sans-serif;--hand:'Caveat',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--ink-deep);color:var(--paper);font-family:var(--serif);overflow-x:hidden;font-weight:400;line-height:1.55}
+body{padding-bottom:64px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");opacity:0.14;mix-blend-mode:overlay}
+
+/* NAV */
+.lp-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;background:linear-gradient(180deg, rgba(10,8,7,0.65) 0%, rgba(10,8,7,0.3) 60%, transparent 100%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background 0.4s, padding 0.4s}
+.lp-nav.scrolled{background:rgba(10,8,7,0.92);padding:12px 32px;border-bottom:1px solid rgba(201,163,90,0.12)}
+.lp-nav__logo{text-decoration:none;display:flex;align-items:center;gap:14px;min-width:0;flex:1}
+.lp-nav__name{display:flex;flex-direction:column;gap:2px;min-width:0}
+.lp-nav__name-en{font-family:var(--display);font-style:italic;font-size:12.5px;color:var(--paper);font-weight:500;line-height:1.25;letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
+.lp-nav__name-cn{font-family:var(--jp);font-size:10px;font-weight:500;color:rgba(245,237,224,0.7);letter-spacing:0.18em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 8px rgba(0,0,0,0.6)}
+.lp-nav__cta{padding:11px 24px;background:transparent;color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid rgba(212,175,110,0.7);transition:background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
+.lp-nav__cta:hover{background:var(--gold);color:var(--ink-deep);border-color:var(--gold);transform:translateY(-1px)}
+@media (max-width:600px){.lp-nav{padding:12px 14px;gap:10px}.lp-nav.scrolled{padding:10px 14px}.lp-nav__name{gap:1px}.lp-nav__name-en{font-size:9.5px;letter-spacing:0;line-height:1.3;white-space:normal;overflow:visible;text-overflow:clip;font-style:italic}.lp-nav__name-cn{font-size:9px;letter-spacing:0.1em;white-space:nowrap}.lp-nav__cta{padding:8px 12px;font-size:9px;letter-spacing:0.2em}}
+
+/* =================================================================
+   HERO — Full-screen slideshow background + 麺 overlay + bold text
+================================================================= */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  background:#0a0805;
+  overflow:hidden;
+}
+
+/* スライドショー全体のラッパー（画面いっぱい） */
+.hero__slideshow{
+  position:absolute;inset:0;z-index:0;
+  background:#000;
+}
+
+/* 各スライド */
+.hero__slide{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity 1.6s ease-in-out;
+}
+.hero__slide.is-active{opacity:1}
+
+/* 動画スライド */
+.hero__slide video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  filter:saturate(1.05) contrast(1.02);
+}
+
+/* 画像スライド（Ken Burns 風ゆっくりズーム） */
+.hero__slide img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  filter:saturate(1.05) contrast(1.02);
+  transform:scale(1.0);
+  transition:transform 7s ease-out;
+}
+.hero__slide.is-active img{
+  transform:scale(1.08);
+}
+
+/* スライドショー上の暗化グラデーション（最小限、左の文字側だけ暗く） */
+.hero__slideshow::before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      rgba(10,8,5,0.45) 0%,
+      rgba(10,8,5,0.15) 15%,
+      transparent 35%,
+      rgba(10,8,5,0.4) 55%,
+      rgba(10,8,5,0.85) 80%,
+      rgba(10,8,5,0.95) 100%);
+}
+/* 端のヴィネット */
+.hero__slideshow::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  box-shadow:inset 0 0 200px rgba(10,8,5,0.65);
+}
+
+/* 巨大な「麺」— 確実に金色で見える書道感。文字エリアと被らない位置に */
+.hero__mei{
+  position:absolute;
+  font-family:var(--brush);
+  font-weight:400;
+  color:var(--gold-bright);
+  opacity:0.32;
+  pointer-events:none;
+  user-select:none;
+  z-index:3;
+  line-height:0.9;
+  letter-spacing:-0.05em;
+  /* 動画の暗い部分でも輪郭が見えるよう、軽い金色のグローを足す */
+  text-shadow:
+    0 0 60px rgba(230,194,128,0.35),
+    0 4px 20px rgba(0,0,0,0.4);
+}
+/* PC: 画面右下にどんと配置。動画と一緒の側、文字とは被らない */
+.hero__mei--pc{
+  display:block;
+  font-size:min(70vh, 46vw);
+  bottom:2vh;right:-2vw;
+  transform:rotate(-4deg);
+}
+.hero__mei--mobile{display:none}
+
+/* コンテンツ */
+.hero__content{
+  position:relative;z-index:5;
+  min-height:100vh;min-height:100svh;
+  max-width:1600px;margin:0 auto;
+  padding:130px 60px 50px;
+  display:grid;grid-template-rows:1fr auto;
+}
+
+.hero__center{
+  display:flex;align-items:flex-end;
+  min-height:55vh;
+  padding-top:38vh;
+  padding-bottom:4vh;
+}
+.hero__copy{
+  max-width:780px;
+  display:flex;flex-direction:column;
+}
+
+/* ヒーロー上の店名ライン（ナビと同じ2行構成） */
+.hero__eyebrow{
+  display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+  margin-bottom:36px;
+}
+.hero__eyebrow-en{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:14px;color:var(--paper);letter-spacing:0.01em;
+  line-height:1.3;
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+}
+.hero__eyebrow-cn{
+  font-family:var(--jp);font-size:11px;font-weight:500;
+  color:var(--gold-pale);letter-spacing:0.2em;
+  text-shadow:0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* タイトル — Fraunces, weight 500-600, optical sizing */
+.hero__title{
+  font-family:var(--display);
+  font-variation-settings:"opsz" 144, "SOFT" 50;
+  font-weight:500;
+  font-size:clamp(56px, 7.4vw, 132px);
+  line-height:0.92;letter-spacing:-0.025em;
+  color:var(--paper);margin-bottom:32px;
+  text-shadow:
+    0 4px 30px rgba(0,0,0,0.75),
+    0 2px 12px rgba(0,0,0,0.65);
+}
+.hero__title em{
+  font-style:italic;
+  font-weight:600;
+  color:var(--gold-pale);
+  display:inline-block;
+}
+
+/* サブタイトル — display 体で italic */
+.hero__subtitle{
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(20px, 1.9vw, 28px);line-height:1.45;
+  color:var(--paper);max-width:560px;
+  margin-bottom:48px;letter-spacing:0.005em;
+  text-shadow:0 2px 18px rgba(0,0,0,0.75);
+}
+
+.hero__cta-group{
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+
+/* ============================================================
+ * 予約ボタン — 朱印(はんこ) × 暖簾(のれん) インスパイア
+ * - くすんだ朱（神社の鳥居や漆器の色）
+ * - 内外の二重金枠（判子の縁）
+ * - 四隅の小さなL字マーカー（額装感）
+ * - 上下の細い縦線（暖簾の布が垂れる風）
+ * ============================================================ */
+.hero__cta-primary{
+  position:relative;
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 38px;
+  /* くすんだ朱：神社/漆器系の落ち着いた赤 */
+  background:linear-gradient(180deg, #a64537 0%, #8e3025 100%);
+  color:var(--gold-pale);text-decoration:none;
+  font-family:var(--sans);font-size:11px;letter-spacing:0.34em;
+  text-transform:uppercase;font-weight:700;
+  /* 外側の金枠 */
+  border:1px solid rgba(212,175,110,0.85);
+  /* 内側の細い金枠（判子の二重縁） */
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,110,0.18),
+    inset 0 0 0 5px rgba(154,53,32,0.0),
+    inset 0 0 0 6px rgba(212,175,110,0.32),
+    0 8px 24px rgba(154,53,32,0.35),
+    0 2px 8px rgba(0,0,0,0.4);
+  transition:transform 0.35s, box-shadow 0.35s, filter 0.3s;
+}
+/* 暖簾の縦線：左右に細く2本ずつ垂らす */
+.hero__cta-primary::before,
+.hero__cta-primary::after{
+  content:"";position:absolute;
+  top:-6px;bottom:-6px;width:1px;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(212,175,110,0.5) 15%,
+    rgba(212,175,110,0.7) 50%,
+    rgba(212,175,110,0.5) 85%,
+    transparent 100%);
+  pointer-events:none;
+}
+.hero__cta-primary::before{left:-1px}
+.hero__cta-primary::after{right:-1px}
+
+/* 四隅のL字マーカー（判子の角飾り） */
+.hero__cta-primary > .corner{
+  position:absolute;width:7px;height:7px;
+  border:1px solid var(--gold);
+  pointer-events:none;
+}
+.hero__cta-primary > .corner.tl{top:3px;left:3px;border-right:0;border-bottom:0}
+.hero__cta-primary > .corner.tr{top:3px;right:3px;border-left:0;border-bottom:0}
+.hero__cta-primary > .corner.bl{bottom:3px;left:3px;border-right:0;border-top:0}
+.hero__cta-primary > .corner.br{bottom:3px;right:3px;border-left:0;border-top:0}
+
+.hero__cta-primary .arrow{
+  font-family:serif;font-size:16px;line-height:1;
+  color:var(--gold);opacity:0.9;
+  transition:transform 0.3s;
+}
+.hero__cta-primary:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(212,175,110,0.3),
+    inset 0 0 0 6px rgba(212,175,110,0.45),
+    0 12px 32px rgba(154,53,32,0.5),
+    0 3px 10px rgba(0,0,0,0.45);
+}
+.hero__cta-primary:hover .arrow{transform:translateX(4px)}
+
+/* 電話番号 — 控えめな金色italic、ボタンに視線を譲る */
+.hero__cta-tel{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:16px;color:var(--gold-pale);text-decoration:none;
+  letter-spacing:0.01em;position:relative;padding:6px 0;
+  transition:color 0.3s;
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+  opacity:0.92;
+}
+.hero__cta-tel::before{
+  content:"☎";display:inline-block;margin-right:8px;
+  font-style:normal;font-size:13px;opacity:0.7;vertical-align:1px;
+}
+.hero__cta-tel::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:rgba(212,175,110,0.3);transition:background 0.3s;
+}
+.hero__cta-tel:hover{color:var(--gold);opacity:1}
+.hero__cta-tel:hover::after{background:var(--gold)}
+
+/* 下: トラスト + スクロールサイン */
+.hero__bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:36px;flex-wrap:wrap;
+  padding-top:36px;
+  border-top:1px solid rgba(245,237,224,0.16);
+}
+.hero__trust{
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  font-family:var(--sans);
+}
+.hero__trust-item{display:inline-flex;align-items:center;gap:14px}
+.hero__trust-stars{font-family:var(--display);font-size:16px;color:var(--gold);letter-spacing:0.06em;line-height:1;text-shadow:0 0 12px rgba(212,175,110,0.4)}
+.hero__trust-text{
+  font-family:var(--display);font-style:italic;font-weight:500;font-size:16px;color:var(--paper);
+  letter-spacing:0.01em;
+  text-shadow:0 2px 10px rgba(0,0,0,0.6);
+}
+.hero__trust-text em{color:var(--gold-pale);font-style:italic;font-weight:600}
+.hero__trust-divider{width:1px;height:18px;background:rgba(245,237,224,0.22)}
+
+/* スクロールサイン */
+/* タブレット */
+@media (max-width:1100px){
+  .hero__content{padding:120px 6vw 40px}
+  .hero__title{font-size:clamp(56px, 10vw, 112px)}
+  .hero__mei--pc{font-size:min(60vh, 70vw);bottom:2vh;right:-6vw}
+  .hero__bottom{flex-direction:column;align-items:flex-start;gap:20px}
+}
+
+/* モバイル */
+@media (max-width:680px){
+  /* スマホ: スライドショーは画面上部40%の「横長枠」、コンテンツはその下に流す */
+  .hero{min-height:100vh;min-height:100svh}
+  .hero__slideshow{
+    inset:auto;  /* PC時の inset:0 を打ち消す */
+    position:absolute;
+    top:60px;left:0;right:0;
+    bottom:auto;
+    height:40vh;
+  }
+  .hero__slideshow::before{
+    background:
+      linear-gradient(180deg,
+        rgba(10,8,5,0.45) 0%,
+        rgba(10,8,5,0.10) 25%,
+        rgba(10,8,5,0.05) 55%,
+        rgba(10,8,5,0.55) 100%);
+  }
+  .hero__slideshow::after{
+    box-shadow:inset 0 0 80px rgba(10,8,5,0.45);
+  }
+  /* コンテンツはスライドショーの下に始まる（ナビ60px + スライド40vh + 余白50px） */
+  .hero__content{
+    padding:calc(60px + 40vh + 50px) 22px 28px;
+    gap:24px;
+    grid-template-rows:auto auto;
+  }
+  .hero__center{min-height:auto;padding:0;align-items:flex-start}
+  .hero__mei--pc{display:none}
+  .hero__mei--mobile{
+    display:block;
+    font-size:min(50vh, 70vw);
+    top:calc(60px + 40vh + 30px);right:-14vw;
+    color:var(--gold-bright);opacity:0.18;
+    transform:rotate(-3deg);
+    text-shadow:0 0 40px rgba(230,194,128,0.3), 0 4px 16px rgba(0,0,0,0.4);
+    z-index:1;
+  }
+  .hero__eyebrow{margin-bottom:24px;gap:3px}
+  .hero__eyebrow-en{font-size:12.5px;line-height:1.35}
+  .hero__eyebrow-cn{font-size:10px;letter-spacing:0.18em}
+  .hero__title{font-size:48px;line-height:0.98;margin-bottom:22px}
+  .hero__subtitle{font-size:17px;line-height:1.45;margin-bottom:30px}
+  .hero__cta-group{flex-direction:column;align-items:stretch;gap:16px}
+  .hero__cta-primary{justify-content:center;padding:16px 28px}
+  .hero__cta-tel{text-align:center;font-size:15px;align-self:center;padding-top:4px}
+  .hero__bottom{padding-top:24px;gap:14px}
+  .hero__trust{gap:14px;flex-direction:column;align-items:flex-start}
+  .hero__trust-divider{display:none}
+  .hero__trust-text{font-size:14px}
+}
+
+/* BOWL */
+.bowl-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 20% 0%, rgba(138,90,43,0.08), transparent 55%),radial-gradient(ellipse at 80% 100%, rgba(201,163,90,0.06), transparent 50%),var(--ink-deep);overflow:hidden}
+.bowl-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold-deep) 0%,transparent 100%);z-index:2}
+.bowl__head{max-width:1280px;margin:0 auto 70px;text-align:center}
+.bowl__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:14px}
+.bowl__chapter::before,.bowl__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.bowl__title{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6vw,88px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.bowl__title em{font-style:italic;color:var(--gold)}
+.bowl__intro{font-family:var(--serif);font-size:18px;line-height:1.7;color:rgba(243,236,225,0.78);max-width:720px;margin:0 auto}
+.bowl__intro em{font-style:italic;color:var(--gold);font-weight:500}
+.bowl__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.bowl__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
+.bowl__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.bowl__photo .bowl__video{width:100%;height:100%;object-fit:cover;display:block}
+.bowl__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
+.bowl__photo .corner{position:absolute;width:50px;height:50px;border:1px solid var(--gold);pointer-events:none}
+.bowl__photo .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}
+.bowl__photo .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+.bowl__photo .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}
+.bowl__photo .corner.br{bottom:14px;right:14px;border-left:0;border-top:0}
+.bowl__photo .label{position:absolute;top:24px;left:24px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,163,90,0.45);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.36em;text-transform:uppercase;font-weight:600}
+.bowl__photo .label::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.bowl__details h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,54px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
+.bowl__details h3 em{font-style:italic;color:var(--gold)}
+.bowl__details .name-jp{font-family:var(--jp);font-size:16px;color:var(--paper-dim);letter-spacing:0.22em;margin-bottom:28px}
+.bowl__details p.desc{font-family:var(--serif);font-size:17px;line-height:1.75;color:rgba(243,236,225,0.85);margin-bottom:24px}
+.bowl__details p.desc em{font-style:italic;color:var(--gold);font-weight:500}
+.bowl__cta{display:inline-flex;align-items:center;gap:14px;padding:18px 32px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s, transform 0.2s;cursor:pointer}
+.bowl__cta:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);transform:translateY(-2px)}
+/* ロゴ的な店名ブロック（軽い装飾枠つき） */
+.bowl__brand{
+  margin-top:36px;padding:18px 0;
+  border-top:1px solid rgba(212,175,110,0.25);
+  border-bottom:1px solid rgba(212,175,110,0.25);
+  display:flex;flex-direction:column;gap:5px;
+  max-width:480px;
+}
+.bowl__brand-en{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:13.5px;color:var(--paper);letter-spacing:0.01em;
+  line-height:1.35;
+}
+.bowl__brand-cn{
+  font-family:var(--jp);font-size:10.5px;font-weight:500;
+  color:var(--gold-pale);letter-spacing:0.22em;
+}
+@media (max-width:1024px){.bowl__hero{grid-template-columns:1fr;gap:40px}.bowl__photo{aspect-ratio:4/3;max-width:600px;margin:0 auto;width:100%}}
+@media (max-width:600px){.bowl-section{padding:80px 22px 90px}.bowl__hero{margin-bottom:60px}}
+
+/* FLAVORS */
+.flavors-section{position:relative;padding:130px 60px 140px;background:linear-gradient(180deg, var(--ink-deep) 0%, #14100c 100%)}
+.flavors__head{max-width:1280px;margin:0 auto 70px;text-align:center}
+.flavors__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:inline-flex;align-items:center;gap:14px}
+.flavors__chapter::before,.flavors__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.flavors__title{font-family:var(--serif);font-weight:400;font-size:clamp(46px,5.4vw,78px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.flavors__title em{font-style:italic;color:var(--gold)}
+.flavors__hero{max-width:1280px;margin:0 auto 80px;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.flavors__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.55)}
+.flavors__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.flavors__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 50%, rgba(10,8,7,0.55) 100%)}
+.flavors__photo-label{position:absolute;bottom:24px;left:24px;right:24px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.flavors__photo-label .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,163,90,0.45);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600}
+.flavors__photo-label .badge::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.flavors__photo-label .meta{font-family:var(--jp);font-size:13px;color:var(--paper);letter-spacing:0.2em;background:rgba(10,8,7,0.55);backdrop-filter:blur(4px);padding:5px 12px;border-left:1px solid rgba(201,163,90,0.3)}
+.flavors__text{display:flex;flex-direction:column;gap:6px}
+.flavor-row{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:22px 0;border-bottom:1px solid rgba(201,163,90,0.18);transition:border-color 0.3s}
+.flavor-row:last-child{border-bottom:0}
+.flavor-row:hover{border-color:rgba(201,163,90,0.4)}
+.flavor-row__num{font-family:var(--serif);font-style:italic;font-weight:400;font-size:38px;color:var(--gold);line-height:1;opacity:0.55;align-self:flex-start}
+.flavor-row__name{font-family:var(--serif);font-weight:400;font-size:28px;color:var(--paper);line-height:1.1;margin-bottom:3px}
+.flavor-row__name em{font-style:italic;color:var(--gold)}
+.flavor-row__desc{font-family:var(--serif);font-size:15.5px;line-height:1.6;color:var(--paper-dim)}
+.combo{max-width:1280px;margin:60px auto 0;padding:30px;background:linear-gradient(135deg, rgba(201,163,90,0.10), rgba(138,90,43,0.05));border:1px solid rgba(201,163,90,0.28)}
+.combo__inner{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center}
+.combo__photo{position:relative;aspect-ratio:4/3;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.45)}
+.combo__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.combo__badge{position:absolute;top:18px;left:18px;display:inline-flex;align-items:center;gap:8px;background:rgba(10,8,7,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,163,90,0.5);color:var(--gold);padding:8px 16px;font-family:var(--sans);font-size:9.5px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600}
+.combo__badge::before{content:"";display:inline-block;width:3px;height:3px;background:var(--gold);border-radius:50%;flex-shrink:0;box-shadow:0 0 6px rgba(201,163,90,0.7)}
+.combo__chapter{font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.combo__title{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,50px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
+.combo__title em{font-style:italic;color:var(--gold)}
+.combo__desc{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--paper-dim);margin-bottom:18px}
+.combo__desc em{font-style:italic;color:var(--gold);font-weight:500}
+.combo__tag{font-family:var(--sans);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--paper-mute);padding-top:16px;border-top:1px solid rgba(201,163,90,0.2)}
+@media (max-width:1024px){.flavors__hero{grid-template-columns:1fr;gap:40px}.flavors__photo{max-width:600px;margin:0 auto;width:100%;aspect-ratio:4/3}.combo__inner{grid-template-columns:1fr;gap:30px}}
+@media (max-width:600px){.flavors-section{padding:80px 22px 90px}.combo{padding:20px}.flavor-row__num{font-size:30px}.flavor-row__name{font-size:24px}}
+
+/* TORCH */
+.torch-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 80% 20%, rgba(255,140,40,0.10), transparent 50%),radial-gradient(ellipse at 20% 80%, rgba(138,90,43,0.08), transparent 55%),var(--ink-deep)}
+.torch__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
+.torch__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+.torch__chapter::before{content:"";width:36px;height:1px;background:var(--gold)}
+.torch__title{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,72px);line-height:1.02;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.torch__title em{font-style:italic;color:var(--gold)}
+.torch__desc{font-family:var(--serif);font-size:17px;line-height:1.7;color:rgba(243,236,225,0.82);margin-bottom:18px}
+.torch__desc em{font-style:italic;color:var(--gold);font-weight:500}
+.torch__cta{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s, transform 0.2s;margin-top:14px}
+.torch__cta:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);transform:translateY(-2px)}
+.torch__video-wrap{display:flex;justify-content:center}
+.torch__video-frame{position:relative;width:340px;max-width:100%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid rgba(201,163,90,0.3);box-shadow:0 0 60px rgba(201,163,90,0.15), 0 30px 80px rgba(0,0,0,0.5);background:#000}
+.torch__video{width:100%;height:100%;object-fit:cover;display:block}
+.torch__video-label{position:absolute;left:0;right:0;bottom:0;padding:30px 22px 22px;background:linear-gradient(to top, rgba(10,8,7,0.88) 0%, rgba(10,8,7,0.45) 60%, transparent 100%);pointer-events:none}
+.torch__video-tag{display:inline-block;font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:6px}
+.torch__video-label p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--paper);line-height:1.3}
+@media (max-width:1024px){.torch__inner{grid-template-columns:1fr;gap:40px;justify-items:center}.torch__video-wrap{width:100%}}
+@media (max-width:600px){.torch-section{padding:80px 22px 90px}.torch__video-frame{width:280px}}
+
+/* STORY */
+.story-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 20% 0%, rgba(138,90,43,0.07), transparent 55%),var(--ink-deep)}
+.story-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold) 0%,transparent 100%)}
+.story__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.story__photo{position:relative;aspect-ratio:4/5;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5)}
+.story__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.story__photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(10,8,7,0.5)}
+.story__photo .tag{position:absolute;top:24px;left:24px;z-index:2;font-family:var(--sans);font-size:9.5px;letter-spacing:0.28em;color:var(--paper);text-transform:uppercase;font-weight:600;background:rgba(10,8,7,0.75);backdrop-filter:blur(6px);border:1px solid rgba(201,163,90,0.4);padding:7px 14px}
+.story__chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(212,175,110,0.1);color:var(--gold-pale);border:1px solid var(--gold);font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
+.story__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-0.02em;color:var(--paper);margin-bottom:14px}
+.story__title em{font-style:italic;color:var(--gold)}
+.story__body p{font-family:var(--serif);font-size:16.5px;line-height:1.75;color:rgba(243,236,225,0.78);margin-bottom:22px}
+.story__body p em{font-style:italic;color:var(--gold);font-weight:500}
+.story__quote{margin-top:28px;padding:24px 0 0;border-top:1px solid rgba(201,163,90,0.22);font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold);line-height:1.35}
+.story__quote small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:0.32em;color:var(--paper-mute);text-transform:uppercase;margin-top:12px}
+@media (max-width:1024px){.story__inner{grid-template-columns:1fr;gap:50px}.story__photo{max-width:520px;margin:0 auto;width:100%}}
+@media (max-width:600px){.story-section{padding:80px 22px 90px}}
+
+/* TRUST */
+.trust-section{position:relative;padding:130px 60px 140px;background:radial-gradient(ellipse at 80% 0%, rgba(201,163,90,0.06), transparent 55%),var(--ink-deep)}
+.trust__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.trust__copy .chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(212,175,110,0.1);color:var(--gold-pale);border:1px solid var(--gold);font-family:var(--sans);font-size:10px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;margin-bottom:22px}
+.trust__copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.6vw,60px);line-height:1.04;letter-spacing:-0.02em;color:var(--paper);margin-bottom:24px}
+.trust__copy h2 em{font-style:italic;color:var(--gold)}
+.trust__lede{font-family:var(--serif);font-size:18px;line-height:1.7;color:var(--paper-dim);max-width:520px;font-weight:500}
+.trust__lede em{font-style:italic;color:var(--gold-pale);font-weight:600}
+.trust__panel{position:relative;aspect-ratio:4/5;background:radial-gradient(ellipse at 30% 25%, rgba(201,163,90,0.10), transparent 60%),radial-gradient(ellipse at 75% 75%, rgba(138,90,43,0.07), transparent 65%),linear-gradient(135deg, var(--ink), var(--ink-deep));border:1px solid rgba(201,163,90,0.25);padding:50px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px rgba(0,0,0,0.4)}
+.trust__panel .top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--sans);font-size:10px;letter-spacing:0.32em;color:var(--gold);text-transform:uppercase;font-weight:500}
+.trust__panel .ar{font-family:var(--ar);font-size:15px;color:var(--paper-dim);direction:rtl;letter-spacing:0;text-transform:none}
+.trust__panel .seal{align-self:center;text-align:center;margin:auto 0}
+.trust__panel .ring{width:180px;height:180px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 22px;background:radial-gradient(circle at 50% 50%, rgba(201,163,90,0.08), transparent 70%)}
+.trust__panel .ring::before,.trust__panel .ring::after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(201,163,90,0.4)}
+.trust__panel .ring::after{inset:14px;border-style:dashed;opacity:0.5}
+.trust__panel .ring .ar-big{font-family:var(--ar);font-size:64px;color:var(--gold);font-weight:700;line-height:1;direction:rtl}
+.trust__panel .label-en{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);margin-bottom:4px}
+.trust__panel .label-en em{font-style:italic;color:var(--gold)}
+.trust__panel .bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:22px;border-top:1px solid rgba(201,163,90,0.22)}
+.trust__panel .bottom .k{display:block;font-family:var(--sans);font-size:9px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:3px}
+.trust__panel .bottom .v{font-family:var(--serif);font-style:italic;color:var(--paper);font-size:13px}
+@media (max-width:1024px){.trust__inner{grid-template-columns:1fr;gap:50px}.trust__panel{max-width:520px;margin:0 auto;width:100%}}
+@media (max-width:600px){.trust-section{padding:80px 22px 90px}.trust__panel{padding:36px 24px}.trust__panel .ring{width:140px;height:140px}.trust__panel .ring .ar-big{font-size:48px}}
+.seo-prose{max-width:780px;margin:60px auto 0;padding:24px 28px;background:rgba(201,163,90,0.03);border-left:1px solid rgba(201,163,90,0.18);font-family:var(--serif);font-size:15px;line-height:1.7;color:var(--paper-mute)}
+.seo-prose em{font-style:italic;color:var(--paper-dim);font-weight:400}
+.seo-prose p{margin:0}
+@media (max-width:600px){.seo-prose{margin:40px 22px 0;padding:20px 22px;font-size:14px}}
+
+/* REVIEWS */
+.reviews-section{position:relative;padding:120px 60px 130px;background:radial-gradient(ellipse at 50% 50%, rgba(201,163,90,0.06), transparent 60%),var(--ink-deep);text-align:center}
+.reviews__head--center{max-width:900px;margin:0 auto 56px;display:flex;flex-direction:column;align-items:center}
+.reviews__chapter{font-family:var(--sans);font-size:10.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+.reviews__chapter::before,.reviews__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.reviews__title{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.6vw,60px);line-height:1.05;letter-spacing:-0.02em;color:var(--paper);margin-bottom:8px}
+.reviews__title em{font-style:italic;color:var(--gold)}
+.rating-display{max-width:560px;margin:0 auto;padding:48px 40px;background:linear-gradient(160deg, rgba(201,163,90,0.07) 0%, rgba(201,163,90,0.02) 100%);border:1px solid rgba(201,163,90,0.22);display:flex;flex-direction:column;align-items:center;gap:18px;position:relative}
+.rating-display::before,.rating-display::after{content:"";position:absolute;width:40px;height:40px;border:1px solid var(--gold)}
+.rating-display::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.rating-display::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.rating-display__stars{display:inline-flex;gap:8px;font-size:42px;line-height:1;color:var(--gold);letter-spacing:0}
+.rating-display__stars .star{display:inline-block;font-family:var(--serif);filter:drop-shadow(0 2px 6px rgba(201,163,90,0.3))}
+.rating-display__stars .star.half{background:linear-gradient(90deg, var(--gold) 60%, rgba(201,163,90,0.25) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rating-display__score{display:inline-flex;align-items:baseline;gap:8px}
+.rating-display__score .num{font-family:var(--serif);font-style:italic;font-weight:500;font-size:64px;color:var(--paper);line-height:1;letter-spacing:-0.01em}
+.rating-display__score .of{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--paper-mute)}
+.rating-display__count{font-family:var(--serif);font-size:16px;color:var(--paper-dim);line-height:1.5}
+.rating-display__count em{font-style:italic;color:var(--gold);font-weight:500;font-size:18px}
+.rating-display__sources{display:inline-flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid rgba(201,163,90,0.18);font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;font-weight:500}
+.rating-display__sources .src{color:var(--paper-dim)}
+.rating-display__sources .dot{color:var(--gold);opacity:0.6}
+.reviews__cta{margin-top:50px}
+.reviews__cta a{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:background 0.3s}
+.reviews__cta a:hover{background:linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%)}
+@media (max-width:680px){.reviews-section{padding:80px 22px 90px}.rating-display{padding:36px 24px}.rating-display__stars{font-size:32px;gap:6px}.rating-display__score .num{font-size:48px}}
+
+/* ACCESS */
+.access-section{position:relative;padding:120px 60px;background:linear-gradient(180deg,#14100c,var(--ink-deep))}
+.access__head{max-width:1280px;margin:0 auto 50px;text-align:center}
+.access__chapter{font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+.access__chapter::before,.access__chapter::after{content:"";width:32px;height:1px;background:var(--gold)}
+.access__title{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,68px);line-height:1.04;color:var(--paper);margin-bottom:10px}
+.access__title em{font-style:italic;color:var(--gold)}
+.access__grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:50px}
+.access__map{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink-card);border:1px solid rgba(201,163,90,.2)}
+.access__map iframe{width:100%;height:100%;border:0;display:block}
+.access__map .label{position:absolute;top:18px;left:18px;z-index:2;background:rgba(14,10,7,0.85);color:var(--gold-pale);border:1px solid var(--gold);backdrop-filter:blur(8px);padding:8px 14px;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
+.access__map .open-link{position:absolute;bottom:18px;right:18px;z-index:2;padding:8px 16px;background:rgba(10,8,7,.85);backdrop-filter:blur(4px);border:1px solid rgba(201,163,90,.4);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;transition:border-color .3s, color .3s}
+.access__map .open-link:hover{color:var(--gold);border-color:var(--gold)}
+.access__info{background:rgba(31,24,20,.5);border:1px solid rgba(201,163,90,.2);padding:36px 30px}
+.access__info .k{font-family:var(--sans);font-size:9.5px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.access__info h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--paper);margin-bottom:4px;line-height:1.2}
+.access__info h3 em{font-style:italic;color:var(--gold)}
+.access__info .head-jp{font-family:var(--jp);font-size:13px;color:var(--paper-dim);letter-spacing:.16em;margin-bottom:6px}
+.access__info .head-cn{display:block;font-family:var(--jp);font-size:11.5px;color:var(--paper-mute);letter-spacing:.08em;margin-bottom:24px}
+.access__info .rows{padding-top:18px;border-top:1px solid rgba(201,163,90,.2);display:flex;flex-direction:column}
+.access__info .row{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(201,163,90,.12)}
+.access__info .row:last-child{border-bottom:0}
+.access__info .rk{font-family:var(--sans);font-size:9.5px;letter-spacing:.28em;color:var(--paper-mute);text-transform:uppercase;font-weight:500;line-height:1.5}
+.access__info .rv{font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--paper)}
+.access__info .rv em{font-style:italic;color:var(--gold);font-weight:500}
+.access__info .rv small{display:block;font-family:var(--sans);font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--paper-mute);text-transform:uppercase;margin-top:4px}
+@media (max-width:1024px){.access__grid{grid-template-columns:1fr;gap:30px}}
+@media (max-width:600px){.access-section{padding:70px 22px 90px}}
+
+/* RESERVE */
+.reserve-section{position:relative;padding:130px 60px 130px;background:radial-gradient(ellipse at 50% 0%, rgba(138,90,43,0.10), transparent 55%),radial-gradient(ellipse at 50% 100%, rgba(201,163,90,0.08), transparent 60%),var(--ink-deep)}
+.reserve-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:60px;background:linear-gradient(180deg,var(--gold-deep) 0%,transparent 100%)}
+.reserve__inner{max-width:1100px;margin:0 auto;text-align:center}
+.reserve__chapter{font-family:var(--sans);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:inline-flex;align-items:center;gap:14px}
+.reserve__chapter::before,.reserve__chapter::after{content:"";width:34px;height:1px;background:var(--gold)}
+.reserve__title{font-family:var(--serif);font-weight:400;font-size:clamp(54px,7vw,108px);line-height:0.98;letter-spacing:-0.03em;color:var(--paper);margin-bottom:20px}
+.reserve__title em{font-style:italic;color:var(--gold-pale)}
+.reserve__title .strike{display:block;font-style:italic;color:var(--gold-pale);font-size:0.58em;line-height:1.2;margin-top:8px;font-weight:400}
+.reserve__lede{font-family:var(--serif);font-size:19px;line-height:1.7;color:rgba(243,236,225,0.85);max-width:680px;margin:0 auto 48px}
+.reserve__lede em{font-style:italic;color:var(--gold);font-weight:500}
+.reserve__cta-group{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.reserve__cta-primary{display:inline-flex;align-items:center;gap:14px;padding:24px 46px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:13px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;border:1px solid var(--gold);transition:transform 0.3s, filter 0.3s;cursor:pointer;box-shadow:0 16px 50px rgba(196,69,43,0.4),0 4px 12px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.18)}
+.reserve__cta-primary:hover{transform:translateY(-3px);filter:brightness(1.06)}
+.reserve__cta-primary .arrow{font-style:normal;font-family:serif;font-size:22px;color:var(--gold-pale)}
+.reserve__cta-secondary{display:inline-flex;align-items:center;gap:14px;padding:20px 36px;background:transparent;text-decoration:none;border:1px solid rgba(201,163,90,0.4);font-family:var(--serif);font-style:italic;font-size:22px;color:var(--paper);transition:color 0.3s, border-color 0.3s}
+.reserve__cta-secondary:hover{color:var(--gold);border-color:var(--gold)}
+.reserve__cta-secondary .icon{font-size:22px;color:var(--gold)}
+.reserve__cta-secondary small{display:block;font-family:var(--sans);font-style:normal;font-size:9.5px;letter-spacing:0.28em;color:var(--paper-mute);text-transform:uppercase;margin-top:3px}
+.reserve__alts{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:24px 0;border-top:1px solid rgba(201,163,90,0.18);border-bottom:1px solid rgba(201,163,90,0.18);margin-bottom:36px;align-items:center}
+.reserve__alts a{font-family:var(--sans);font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--paper-dim);font-weight:500;text-decoration:none;transition:color 0.3s;display:inline-flex;align-items:center;gap:8px}
+.reserve__alts a:hover{color:var(--gold)}
+.reserve__alts a em{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:13px;letter-spacing:0;text-transform:none;font-weight:500;margin:0 4px}
+.reserve__alts .alt-instagram svg{width:16px;height:16px}
+.reserve__status{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--paper-mute)}
+.reserve__status em{color:var(--gold);font-style:italic;font-weight:500}
+.reserve__status::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold-deep);margin-right:8px;animation:pulse 1.4s ease-in-out infinite;vertical-align:middle}
+@media (max-width:600px){.reserve-section{padding:80px 22px 90px}.reserve__title{font-size:46px}.reserve__lede{font-size:16px}.reserve__cta-group{flex-direction:column;align-items:stretch}.reserve__cta-primary,.reserve__cta-secondary{justify-content:center;text-align:center}.reserve__cta-secondary{font-size:18px}.reserve__alts{flex-direction:column;gap:12px;text-align:center}}
+
+/* STICKY */
+.sticky-live{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:150;background:rgba(10,8,7,0.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(201,163,90,0.32);border-radius:999px;box-shadow:0 12px 40px rgba(0,0,0,0.55),0 4px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(201,163,90,0.08);animation:sticky-enter 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both;max-width:calc(100vw - 32px)}
+.sticky-live.hidden{transform:translate(-50%, 200%);opacity:0}
+@keyframes sticky-enter{from{transform:translate(-50%, 200%);opacity:0}to{transform:translate(-50%, 0);opacity:1}}
+.sticky-live__inner{padding:10px 16px 10px 22px;display:flex;align-items:center;gap:18px}
+.sticky-live__item{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:11.5px;color:var(--paper-dim);line-height:1.4;letter-spacing:0.02em;white-space:nowrap}
+.sticky-live__item em{font-family:var(--serif);font-style:italic;color:var(--gold);font-weight:500;font-size:15px;margin:0 1px}
+.sticky-live__dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px rgba(74,222,128,0.6);animation:sticky-pulse 2.4s ease-in-out infinite;flex-shrink:0}
+@keyframes sticky-pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.sticky-live__check{color:var(--gold);font-weight:700;font-size:12px;font-family:var(--sans);flex-shrink:0}
+.sticky-live__sep{width:1px;height:14px;background:rgba(201,163,90,0.25);flex-shrink:0}
+.sticky-live__cta{padding:12px 24px;background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);text-decoration:none;font-family:var(--sans);font-size:11.5px;letter-spacing:0.26em;text-transform:uppercase;font-weight:700;border-radius:999px;transition:filter 0.3s, transform 0.3s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;flex-shrink:0;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(196,69,43,0.5),0 2px 6px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.2);position:relative;animation:cta-pulse 2.6s ease-in-out infinite}
+.sticky-live__cta::before{content:"";position:absolute;inset:-2px;border-radius:999px;border:1px solid var(--gold);opacity:0;animation:cta-ring 2.6s ease-out infinite;pointer-events:none}
+@keyframes cta-pulse{0%,100%{box-shadow:0 6px 18px rgba(196,69,43,0.5), 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)}50%{box-shadow:0 10px 26px rgba(196,69,43,0.7), 0 3px 10px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.25)}}
+@keyframes cta-ring{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.18);opacity:0}}
+.sticky-live__cta:hover{filter:brightness(1.1);transform:translateY(-2px)}
+@media (max-width:640px){body{padding-bottom:96px}.sticky-live{bottom:14px;border-radius:18px;width:calc(100vw - 28px);max-width:none}.sticky-live__inner{padding:10px 12px;gap:10px;flex-wrap:wrap;justify-content:space-between}.sticky-live__item{font-size:10px;gap:5px}.sticky-live__item em{font-size:12px}.sticky-live__sep{display:none}.sticky-live__cta{padding:9px 14px;font-size:9.5px;letter-spacing:0.14em;gap:5px;margin-left:auto}}
+
+/* DIALOG */
+.engage-dialog{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.engage-dialog[hidden]{display:none}
+.engage-dialog.show{opacity:1;pointer-events:auto}
+.engage-dialog__backdrop{position:absolute;inset:0;background:rgba(10,8,7,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.engage-dialog__panel{position:relative;max-width:540px;width:100%;background:linear-gradient(165deg, #1c1410 0%, #261b14 50%, #1a130e 100%);border:1px solid rgba(212,175,110,0.35);padding:54px 44px 36px;box-shadow:0 50px 100px rgba(0,0,0,0.7),0 0 60px rgba(212,175,110,0.08),inset 0 1px 0 rgba(212,175,110,0.12);transform:translateY(20px) scale(0.98);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
+.engage-dialog.show .engage-dialog__panel{transform:translateY(0) scale(1)}
+.engage-dialog__panel::before,.engage-dialog__panel::after{content:"";position:absolute;width:44px;height:44px;border:1px solid var(--gold);pointer-events:none}
+.engage-dialog__panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.engage-dialog__panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.engage-dialog__close{position:absolute;top:16px;right:16px;width:32px;height:32px;background:transparent;border:1px solid rgba(212,175,110,0.3);border-radius:50%;color:var(--paper-dim);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:5}
+.engage-dialog__close:hover{color:var(--ink-deep);border-color:var(--gold);background:var(--gold)}
+.engage-dialog__chip{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:10.5px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:22px}
+.engage-dialog__chip::before{content:"";width:30px;height:1px;background:var(--gold)}
+.engage-dialog__title{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,52px);line-height:1.05;color:var(--paper);margin-bottom:18px;letter-spacing:-0.02em}
+.engage-dialog__title em{font-style:italic;color:var(--gold-pale);font-weight:400}
+.engage-dialog__lede{font-family:var(--serif);font-size:17px;line-height:1.65;color:rgba(245,237,224,0.85);margin-bottom:32px;font-weight:500}
+.engage-dialog__lede em{font-style:italic;color:var(--gold-pale);font-weight:600}
+.engage-dialog__actions{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.engage-dialog__btn{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px;text-decoration:none;font-family:var(--sans);font-size:11px;letter-spacing:0.34em;text-transform:uppercase;font-weight:700;transition:all 0.3s;cursor:pointer;border:1px solid transparent}
+.engage-dialog__btn.primary{background:linear-gradient(135deg, var(--vermilion-soft) 0%, var(--vermilion) 60%, var(--vermilion-deep) 100%);color:var(--paper);border:1px solid var(--gold);box-shadow:0 10px 30px rgba(196,69,43,0.35),inset 0 1px 0 rgba(255,255,255,0.15)}
+.engage-dialog__btn.primary:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.engage-dialog__btn.secondary{background:transparent;color:var(--paper);border:1px solid rgba(212,175,110,0.5)}
+.engage-dialog__btn.secondary:hover{color:var(--gold-pale);border-color:var(--gold);background:rgba(212,175,110,0.06)}
+.engage-dialog__foot{padding-top:20px;border-top:1px solid rgba(212,175,110,0.18);font-family:var(--sans);font-size:10.5px;letter-spacing:0.24em;color:var(--paper-mute);text-transform:uppercase;text-align:center;font-weight:500}
+.engage-dialog__foot a{color:var(--gold);text-decoration:none;font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;font-weight:500;border-bottom:1px solid var(--gold-dim);padding-bottom:1px}
+@media (max-width:540px){.engage-dialog__panel{padding:36px 24px 26px}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="lp-nav">
+  <a href="#top" class="lp-nav__logo">
+    <span class="lp-nav__name">
+      <span class="lp-nav__name-en">{{ store.name_full_en }}</span>
+      <span class="lp-nav__name-cn">{{ store.name_cn }}</span>
+    </span>
+  </a>
+  <a href="{{ store.tablecheck_url }}" target="_blank" rel="noopener" class="lp-nav__cta">
+    Reserve <span>→</span>
+  </a>
+</nav>
+
+<main id="top">
+
+<!-- ============ HERO（フルスクリーンスライドショー + 巨大「麺」）============ -->
+<section class="hero">
+
+  <!-- フルスクリーンのスライドショー（画像4枚） -->
+  <div class="hero__slideshow" id="heroSlideshow">
+    <div class="hero__slide is-active" data-slide="0">
+      <img src="/ramen-image/7.jpg" alt="Wagyu ramen with donburi set">
+    </div>
+    <div class="hero__slide" data-slide="1">
+      <img src="/ramen-image/8.jpg" alt="Signature wagyu ramen">
+    </div>
+    <div class="hero__slide" data-slide="2">
+      <img src="/ramen-image/6.jpg" alt="Wagyu ramen bowl">
+    </div>
+    <div class="hero__slide" data-slide="3">
+      <img src="/ramen-image/9.jpg" alt="The craft of five generations">
+    </div>
+  </div>
+
+  <!-- 巨大な「麺」（書道感、動画の上に重ねる） -->
+  <span class="hero__mei hero__mei--pc" aria-hidden="true">麺</span>
+  <span class="hero__mei hero__mei--mobile" aria-hidden="true">麺</span>
+
+  <!-- コンテンツ -->
+  <div class="hero__content">
+
+    <div class="hero__center">
+      <div class="hero__copy">
+
+        <div class="hero__eyebrow">
+          <span class="hero__eyebrow-en">{{ store.name_full_en }}</span>
+          <span class="hero__eyebrow-cn">{{ store.name_cn }}</span>
+        </div>
+
+        <h1 class="hero__title">
+          Authentic<br>
+          <em>Halal Wagyu</em><br>
+          Ramen.
+        </h1>
+
+        <p class="hero__subtitle">
+          A bowl you have to try at least once.
+        </p>
+
+        <div class="hero__cta-group">
+          <a href="{{ store.tablecheck_url }}" target="_blank" rel="noopener" class="hero__cta-primary">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <span>Reserve a seat</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="tel:+{{ store.tel_raw }}" class="hero__cta-tel">
+            {{ store.tel_display }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero__bottom">
+      <div class="hero__trust">
+        <div class="hero__trust-item">
+          <span class="hero__trust-stars">★★★★★</span>
+          <span class="hero__trust-text"><em>{{ store.rating }}</em> · 1,000+ reviews</span>
+        </div>
+        <div class="hero__trust-divider"></div>
+        <div class="hero__trust-item">
+          <span class="hero__trust-text">Reservations recommended</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ THE BOWL ============ -->
+<section class="bowl-section">
+  <div class="bowl__head">
+    <div class="bowl__chapter">The Bowl</div>
+    <h2 class="bowl__title">A bowl <em>worth flying for.</em></h2>
+    <p class="bowl__intro">
+      Travelers come to {{ store.city }} for many things. <em>This bowl</em> is one of them.
+      <em>100% Japanese wagyu</em> sliced and laid over a rich broth — a halal
+      ramen that exists at the intersection of <em>real wagyu</em> and
+      <em>real ramen</em>, and nothing else like it in the city.
+    </p>
+  </div>
+
+  <div class="bowl__hero">
+    <div class="bowl__photo">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+      <video class="bowl__video"
+             autoplay muted loop playsinline preload="auto"
+             poster="/ramen-image/8.jpg"
+             aria-label="Wagyu ramen — the bowl up close">
+        <source src="/ramen-image/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="bowl__details">
+      <h3>Wagyu <em>Ramen.</em></h3>
+      <div class="name-jp">100% Japanese Wagyu</div>
+
+      <p class="desc">
+        Sliced <em>100% Japanese wagyu</em> over a deep, savory broth.
+        Served halal-friendly, in the heart of {{ store.city }}. A bowl built around
+        one idea: the wagyu, and the broth that lets it shine.
+      </p>
+
+      <a href="#reserve" class="bowl__cta">
+        Book your seat <span>→</span>
+      </a>
+
+      <div class="bowl__brand">
+        <span class="bowl__brand-en">{{ store.name_full_en }}</span>
+        <span class="bowl__brand-cn">{{ store.name_cn }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLAVORS ============ -->
+<section class="flavors-section">
+  <div class="flavors__head">
+    <div class="flavors__chapter">Flavors</div>
+    <h2 class="flavors__title">Choose your <em>broth.</em></h2>
+  </div>
+
+  <div class="flavors__hero">
+    <div class="flavors__photo">
+      <img src="/ramen-image/6.jpg" alt="Wagyu ramen — our signature bowl">
+      <div class="flavors__photo-label">
+        <span class="badge">Signature Wagyu Ramen</span>
+        <span class="meta">和牛ラーメン</span>
+      </div>
+    </div>
+
+    <div class="flavors__text">
+      <div class="flavor-row">
+        <div class="flavor-row__num">01</div>
+        <div class="flavor-row__body">
+          <div class="flavor-row__name">Wagyu <em>Miso</em></div>
+          <p class="flavor-row__desc">A rich, deep miso broth layered with the umami of the wagyu slices.</p>
+        </div>
+      </div>
+
+      <div class="flavor-row">
+        <div class="flavor-row__num">02</div>
+        <div class="flavor-row__body">
+          <div class="flavor-row__name">Wagyu <em>Shoyu</em></div>
+          <p class="flavor-row__desc">A traditional shoyu broth that lets the wagyu speak first.</p>
+        </div>
+      </div>
+
+      <div class="flavor-row">
+        <div class="flavor-row__num">03</div>
+        <div class="flavor-row__body">
+          <div class="flavor-row__name">Wagyu <em>Spicy</em></div>
+          <p class="flavor-row__desc">Our signature spicy broth, layered with house chili oil and chili threads. The heat lifts the fat off the wagyu in waves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="combo">
+    <div class="combo__inner">
+      <div class="combo__photo">
+        <img src="/ramen-image/7.jpg" alt="Wagyu ramen + marbled wagyu donburi combo set">
+        <span class="combo__badge">Most Popular Combo</span>
+      </div>
+      <div class="combo__body">
+        <div class="combo__chapter">Set Menu</div>
+        <h3 class="combo__title">+ <em>Marbled Wagyu Donburi</em></h3>
+
+        <p class="combo__desc">
+          Pair any ramen with our <em>marbled wagyu donburi</em> — sliced wagyu
+          over rice, finished tableside. The <em>combo everyone orders</em> when
+          they sit down. One bowl is never enough.
+        </p>
+        <div class="combo__tag">Available with any flavor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TORCH ============ -->
+<section class="torch-section">
+  <div class="torch__inner">
+    <div class="torch__copy">
+      <div class="torch__chapter">The Experience</div>
+      <h2 class="torch__title">Flame-torched <em>at your table.</em></h2>
+
+      <p class="torch__desc">
+        We finish every dish <em>in front of you</em>. The chef brings the
+        torch to the wagyu — flame meets fat, the surface caramelizes in
+        seconds, and the aroma reaches you before the plate does.
+      </p>
+      <p class="torch__desc">
+        It's the moment phones come out, the moment <em>you remember</em>
+        when you fly home.
+      </p>
+      <a href="#reserve" class="torch__cta">
+        Watch it happen — Reserve <span>→</span>
+      </a>
+    </div>
+
+    <div class="torch__video-wrap">
+      <div class="torch__video-frame">
+        <video
+          class="torch__video"
+          autoplay muted loop playsinline preload="auto"
+          poster="/ramen-image/9.jpg"
+          aria-label="Wagyu performance at our counter">
+          <source src="/ramen-image/ramen.MOV" type="video/quicktime">
+          <source src="/ramen-image/ramen.MOV" type="video/mp4">
+          <source src="/ramen-image/ramen.mp4" type="video/mp4">
+        </video>
+        <div class="torch__video-label">
+          <span class="torch__video-tag">Live from the counter</span>
+          <p>The flame, the wagyu, the moment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story-section">
+  <div class="story__inner">
+
+    <div class="story__photo">
+      <span class="tag">Since 1962</span>
+      <img src="/ramen-image/9.jpg" alt="Five generations of wagyu craftsmen">
+    </div>
+
+    <div>
+      <span class="story__chip">Our story</span>
+      <h2 class="story__title">From <em>real wagyu,</em> a real bowl.</h2>
+
+      <div class="story__body">
+        <p>Our family started as wagyu merchants in <em>1962</em>. Five generations of facing cattle, judging meat, and refining the same craft — wholesale, butcher, restaurant.</p>
+        <p>In my thirties, I visited America, and the "WAGYU" I saw there shocked me. Australian and American cattle being sold as wagyu, people smiling, saying "<em>so this is wagyu?</em>" — and what they ate wasn't the real thing.</p>
+        <p>As the fifth generation, I made a decision: <em>deliver real wagyu to the world again</em>. Not the over-fattened industrial cuts. <em>Healthy lean wagyu</em> with deep umami in the meat itself. That's the wagyu in this bowl.</p>
+        <p>And <em>{{ store.city }}</em> — at the heart of Japan's food culture — is where we serve it as ramen. Walk in, and into this bowl. <em>Halal-friendly</em>, made for travelers who came to Japan for the real thing.</p>
+        <p class="story__quote">
+          "Real wagyu, for everyone in the world."
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="trust-section">
+  <div class="trust__inner">
+
+    <div class="trust__copy">
+      <span class="chip">Muslim-friendly</span>
+      <h2>Eat <em>without worry.</em></h2>
+      <p class="trust__lede">
+        100% Japanese wagyu — halal-friendly, served with care for travelers
+        from around the world. Please share any dietary needs when you book.
+      </p>
+    </div>
+
+    <div class="trust__panel">
+      <div class="top">
+        <span>Halal-friendly</span>
+        <span class="ar">صديق المسلم</span>
+      </div>
+      <div class="seal">
+        <div class="ring"><span class="ar-big">حلال</span></div>
+        <div class="label-en"><em>Halal-friendly Wagyu Ramen.</em></div>
+      </div>
+      <div class="bottom">
+        <div><span class="k">Wagyu</span><span class="v">100% Japanese</span></div>
+        <div><span class="k">Service</span><span class="v">Halal-friendly</span></div>
+        <div><span class="k">Hours</span><span class="v">{{ store.hours_short }}</span></div>
+        <div><span class="k">Location</span><span class="v">{{ store.city }}</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="seo-prose">
+    <p>
+      Looking for <em>halal ramen</em> near {{ store.station_en }}? Searching
+      <em>halal restaurants near me</em> or <em>ramen near me</em> while
+      traveling in Japan? Our halal-friendly <em>noodle</em> shop serves
+      100% Japanese Wagyu in a deep, savory broth — the bowl travelers
+      come back for. One of the most-saved <em>halal restaurants</em> in
+      {{ store.city }} for visitors from Malaysia, Indonesia, Singapore, the UAE,
+      and beyond.
+    </p>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews-section">
+
+  <div class="reviews__head reviews__head--center">
+    <div class="reviews__chapter">Reviews</div>
+    <h2 class="reviews__title">Loved by <em>travelers worldwide.</em></h2>
+  </div>
+
+  <div class="rating-display">
+    <div class="rating-display__stars" aria-label="4.6 out of 5 stars">
+      <span class="star filled">★</span>
+      <span class="star filled">★</span>
+      <span class="star filled">★</span>
+      <span class="star filled">★</span>
+      <span class="star half">★</span>
+    </div>
+    <div class="rating-display__score">
+      <span class="num">4.6</span>
+      <span class="of">/ 5.0</span>
+    </div>
+    <div class="rating-display__count">
+      Based on <em>{{ store.rating_count }}</em> verified reviews
+    </div>
+    <div class="rating-display__sources">
+      <span class="src">Google</span>
+      <span class="dot">·</span>
+      <span class="src">TripAdvisor</span>
+      <span class="dot">·</span>
+      <span class="src">Tabelog</span>
+    </div>
+  </div>
+
+  <div class="reviews__cta">
+    <a href="#reserve">Reserve your seat <span>→</span></a>
+  </div>
+
+</section>
+
+<!-- ============ ACCESS ============ -->
+<section class="access-section">
+
+  <div class="access__head">
+    <div class="access__chapter">Access</div>
+    <h2 class="access__title">Steps from <em>{{ store.station_en }}.</em></h2>
+  </div>
+
+  <div class="access__grid">
+
+    <div class="access__map">
+      <span class="label">{{ store.station_en }}</span>
+      <iframe
+        src="{{ store.maps_embed }}"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="{{ store.station_en }} — {{ store.name_short }} map"></iframe>
+      <a class="open-link" href="{{ store.maps_link }}" target="_blank" rel="noopener">↗ Directions</a>
+    </div>
+
+    <div class="access__info">
+      <div class="k">— Store</div>
+      <h3><em>{{ store.name_full_en }}</em></h3>
+      <div class="head-jp">Ramen noodle (Japanese Food)</div>
+      <span class="head-cn">{{ store.name_cn }}</span>
+
+      <div class="rows">
+        <div class="row">
+          <span class="rk">Hours</span>
+          <span class="rv"><em>{{ store.hours }}</em><small>{{ store.hours_note }}{% if store.hours_special %} · {{ store.hours_special }}{% endif %}</small></span>
+        </div>
+        <div class="row">
+          <span class="rk">Phone</span>
+          <span class="rv"><em><a href="tel:+{{ store.tel_raw }}" style="color:inherit;text-decoration:none">{{ store.tel_display }}</a></em><small>Reservations welcome</small></span>
+        </div>
+        <div class="row">
+          <span class="rk">Address</span>
+          <span class="rv">
+            {{ store.address_en }}
+            <small>{{ store.address_postal }}</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Station</span>
+          <span class="rv">
+            <em>{{ store.station_en }}</em>
+            <small>{{ store.station_jp }}</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Seats</span>
+          <span class="rv">
+            <em>{{ store.seats }}</em>
+            <small>{{ store.seats_note }}</small>
+          </span>
+        </div>
+        <div class="row">
+          <span class="rk">Facilities</span>
+          <span class="rv">
+            {{ store.facilities_main }}
+            <small>{{ store.facilities_sub }}</small>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============ RESERVE ============ -->
+<section class="reserve-section" id="reserve">
+  <div class="reserve__inner">
+
+    <div class="reserve__chapter">Reserve</div>
+
+    <h2 class="reserve__title">
+      Ready
+      <span class="strike">— when you are.</span>
+    </h2>
+
+    <p class="reserve__lede">
+      For the best experience, reservations are recommended.
+      <em>Book online in seconds</em> to secure your seat at the
+      wagyu-and-broth standard you came for.
+    </p>
+
+    <div class="reserve__cta-group">
+      <a class="reserve__cta-primary" href="{{ store.tablecheck_url }}" target="_blank" rel="noopener">
+        Reserve online <span class="arrow">→</span>
+      </a>
+      <a class="reserve__cta-secondary" href="tel:+{{ store.tel_raw }}">
+        <span class="icon">☎</span>
+        <span>
+          {{ store.tel_display }}
+          <small>Or call us</small>
+        </span>
+      </a>
+    </div>
+
+    <div class="reserve__alts">
+      <a href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
+        Ask a question · <em>{{ store.email }}</em>
+      </a>
+      <a href="{{ store.maps_link }}" target="_blank" rel="noopener">
+        Directions · <em>{{ store.station_en }}</em>
+      </a>
+      {% if store.instagram_url %}<a href="{{ store.instagram_url }}" target="_blank" rel="noopener" class="alt-instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Instagram · <em>{{ store.instagram_handle }}</em>
+      </a>{% endif %}
+    </div>
+
+    <p class="reserve__status">
+      Open <em>{{ store.hours_short }}</em>, every day · Reservations welcome
+    </p>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ STICKY ============ -->
+<div class="sticky-live" id="stickyLive">
+  <div class="sticky-live__inner">
+    <div class="sticky-live__item">
+      <span class="sticky-live__dot"></span>
+      <span><em id="sticky-viewing">7</em> viewing now</span>
+    </div>
+    <div class="sticky-live__sep"></div>
+    <div class="sticky-live__item">
+      <span class="sticky-live__check">✓</span>
+      <span><em id="sticky-reserved">14</em> reservations this week</span>
+    </div>
+    <a class="sticky-live__cta" href="{{ store.tablecheck_url }}" target="_blank" rel="noopener">
+      Check Availability <span>→</span>
+    </a>
+  </div>
+</div>
+
+<!-- ============ DIALOG ============ -->
+<div class="engage-dialog" id="engageDialog" role="dialog" aria-modal="true" hidden>
+  <div class="engage-dialog__backdrop"></div>
+  <div class="engage-dialog__panel">
+    <button class="engage-dialog__close" aria-label="Close">✕</button>
+    <div class="engage-dialog__chip">An Invitation</div>
+    <h2 class="engage-dialog__title">Reserve <em>your seat.</em></h2>
+    <p class="engage-dialog__lede">
+      Thank you for visiting. We're a small, popular spot —
+      <em>reservations are recommended</em> to make sure we can welcome you.
+    </p>
+    <div class="engage-dialog__actions">
+      <a class="engage-dialog__btn primary" href="{{ store.tablecheck_url }}" target="_blank" rel="noopener">
+        Reserve online <span>→</span>
+      </a>
+      <a class="engage-dialog__btn secondary" href="mailto:{{ store.email }}?subject=Question%20about%20{{ store.name_short | urlencode }}">
+        Ask us a question
+      </a>
+    </div>
+    <div class="engage-dialog__foot">
+      Or call <a href="tel:+{{ store.tel_raw }}">{{ store.tel_display }}</a> · {{ store.hours_short }} every day
+    </div>
+  </div>
+</div>
+
+<script>
+  // ナビのスクロール検出
+  (function(){
+    var nav = document.querySelector('.lp-nav');
+    if (!nav) return;
+    function onScroll(){
+      if (window.scrollY > 60) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
+  // ヒーロースライドショー（画像4枚）
+  (function(){
+    var slideshow = document.getElementById('heroSlideshow');
+    if (!slideshow) return;
+    var slides = slideshow.querySelectorAll('.hero__slide');
+    if (slides.length < 2) return;
+    var current = 0;
+    // タイミング: 各画像 5.5秒
+    var INTERVAL = 5500;
+    function next(){
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+      setTimeout(next, INTERVAL);
+    }
+    setTimeout(next, INTERVAL);
+  })();
+
+  // Sticky live activity
+  (function(){
+    var v = document.getElementById('sticky-viewing');
+    var r = document.getElementById('sticky-reserved');
+    function setV(){
+      if (!v) return;
+      v.textContent = 5 + Math.floor(Math.random() * 5);
+    }
+    function setR(){
+      if (!r) return;
+      var stored = parseInt(sessionStorage.getItem('{{ store.slug }}-reserved'), 10);
+      if (!stored || isNaN(stored) || stored < 11 || stored > 17) {
+        stored = 11 + Math.floor(Math.random() * 7);
+        sessionStorage.setItem('{{ store.slug }}-reserved', stored);
+      }
+      if (Math.random() < 0.4 && stored < 17) {
+        stored += 1;
+        sessionStorage.setItem('{{ store.slug }}-reserved', stored);
+      }
+      r.textContent = stored;
+    }
+    setV();
+    setR();
+    setInterval(setV, 180000);
+    setInterval(setR, 9000000);
+  })();
+
+  // 20秒後の予約促進ダイアログ
+  (function(){
+    var KEY = '{{ store.slug }}-engaged-shown';
+    if (sessionStorage.getItem(KEY) === '1') return;
+    var dlg = document.getElementById('engageDialog');
+    if (!dlg) return;
+    var close = dlg.querySelector('.engage-dialog__close');
+    var backdrop = dlg.querySelector('.engage-dialog__backdrop');
+    function open(){
+      dlg.hidden = false;
+      requestAnimationFrame(function(){ dlg.classList.add('show'); });
+      sessionStorage.setItem(KEY, '1');
+    }
+    function shut(){
+      dlg.classList.remove('show');
+      setTimeout(function(){ dlg.hidden = true; }, 400);
+    }
+    setTimeout(open, 20000);
+    close && close.addEventListener('click', shut);
+    backdrop && backdrop.addEventListener('click', shut);
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && !dlg.hidden) shut();
+    });
+    dlg.querySelectorAll('.engage-dialog__btn').forEach(function(a){
+      a.addEventListener('click', shut);
+    });
+  })();
+</script>
+
+</body>
+</html>
